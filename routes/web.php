@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AlumnoController;
 
 // ============================================================
 // RUTAS PÚBLICAS — cualquiera puede entrar, sin estar logueado
@@ -57,3 +58,27 @@ Route::get('/alumno/dashboard', [DashboardController::class, 'alumno'])
 Route::get('/padre/dashboard', [DashboardController::class, 'padre'])
     ->middleware(['auth', 'role:padre'])
     ->name('padre.dashboard');
+
+Route::get('/admin/alumnos', [AlumnoController::class, 'index'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.alumnos.index');
+
+Route::get('/admin/alumnos/create', [AlumnoController::class, 'create'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.alumnos.create');
+
+Route::post('/admin/alumnos', [AlumnoController::class, 'store'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.alumnos.store');
+
+Route::get('/admin/alumnos/{alumno}/edit', [AlumnoController::class, 'edit'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.alumnos.edit');
+
+Route::put('/admin/alumnos/{alumno}', [AlumnoController::class, 'update'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.alumnos.update');
+
+Route::delete('/admin/alumnos/{alumno}', [AlumnoController::class, 'destroy'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.alumnos.destroy');
