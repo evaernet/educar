@@ -11,6 +11,9 @@
             class="inline-block mt-6 bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded">
             Gestionar alumnos
         </a>
+        <a href="{{ route('admin.niveles.index') }}" class="inline-block mt-6 ml-2 bg-purple-700 text-white px-4 py-2 rounded">Gestionar niveles</a>
+        <a href="{{ route('admin.cursos.index') }}" class="inline-block mt-6 ml-2 bg-orange-700 text-white px-4 py-2 rounded">Gestionar cursos</a>
+        <a href="{{ route('admin.materias.index') }}" class="inline-block mt-6 ml-2 bg-pink-700 text-white px-4 py-2 rounded">Gestionar materias</a>
     </div>
 
 </div>
