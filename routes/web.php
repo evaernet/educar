@@ -8,6 +8,7 @@ use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\NivelController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\MateriaController;
+use App\Http\Controllers\ProfesorController;
 
 // ============================================================
 // RUTAS PÚBLICAS — cualquiera puede entrar, sin estar logueado
@@ -89,3 +90,7 @@ Route::delete('/admin/alumnos/{alumno}', [AlumnoController::class, 'destroy'])
 Route::resource('admin/niveles', NivelController::class)->parameters(['niveles'=>'nivel'])->names('admin.niveles')->middleware(['auth','role:admin']);
 Route::resource('admin/cursos', CursoController::class)->parameters(['cursos'=>'curso'])->names('admin.cursos')->middleware(['auth','role:admin']);
 Route::resource('admin/materias', MateriaController::class)->parameters(['materias'=>'materia'])->names('admin.materias')->middleware(['auth','role:admin']);
+Route::resource('admin/profesores', ProfesorController::class)
+    ->parameters(['profesores' => 'profesor'])
+    ->names('admin.profesores')
+    ->middleware(['auth', 'role:admin']);
