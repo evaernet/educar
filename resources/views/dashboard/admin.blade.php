@@ -11,6 +11,7 @@
             class="inline-block mt-6 bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded">
             Gestionar alumnos
         </a>
+        <a href="{{ route('admin.profesores.index') }}" class="inline-block mt-6 ml-2 bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded">Gestionar profesores</a>
     </div>
 
 </div>
