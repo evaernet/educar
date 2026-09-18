@@ -91,18 +91,14 @@ class AlumnoController extends Controller
     public function update(Request $request, Alumno $alumno)
     {
         $datos = $request->validate([
-            'legajo' => [
-                'required',
-                'string',
-                'max:20',
-                Rule::unique('alumnos', 'legajo')->ignore($alumno),
-            ],
-            'dni' => [
-                'required',
-                'string',
-                'max:20',
-                Rule::unique('alumnos', 'dni')->ignore($alumno),
-            ],
+'legajo' => [
+    'required', 'string', 'max:20', 'regex:/^[0-9\-]{1,20}$/',
+    Rule::unique('alumnos', 'legajo')->ignore($alumno),
+],
+'dni' => [
+    'required', 'string', 'max:20', 'regex:/^\d{7,8}$/',
+    Rule::unique('alumnos', 'dni')->ignore($alumno),
+],
             'nombre'           => 'required|string|max:100',
             'apellido'         => 'required|string|max:100',
             'fecha_nacimiento' => 'required|date|before_or_equal:today',
