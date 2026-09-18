@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Alumno;
+use App\Models\User;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
 class AlumnoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         $request->validate([
@@ -36,55 +35,54 @@ class AlumnoController extends Controller
         return view('alumnos.index', compact('alumnos', 'buscar'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('alumnos.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
-        {
-            $datos = $request->validate([
-                'legajo' => 'required|string|max:20|unique:alumnos,legajo',
-                'dni' => 'required|string|max:20|unique:alumnos,dni',
-                'nombre' => 'required|string|max:100',
-                'apellido' => 'required|string|max:100',
-                'fecha_nacimiento' => 'required|date|before_or_equal:today',
-                'domicilio' => 'required|string|max:255',
-                'telefono' => 'nullable|string|max:30',
-                'email' => 'nullable|email|max:255',
-            ], [
-                'required' => 'El campo :attribute es obligatorio.',
-                'unique' => 'El :attribute ya está registrado.',
-                'max' => 'El campo :attribute no puede superar :max caracteres.',
-                'email' => 'Ingresá un correo electrónico válido.',
-                'date' => 'Ingresá una fecha válida.',
-                'before_or_equal' => 'La fecha no puede ser posterior a hoy.',
-            ]);
+    {
+        $datos = $request->validate([
+            'legajo'           => 'required|string|max:20|unique:alumnos,legajo',
+            'dni'              => 'required|string|max:20|unique:alumnos,dni',
+            'nombre'           => 'required|string|max:100',
+            'apellido'         => 'required|string|max:100',
+            'fecha_nacimiento' => 'required|date|before_or_equal:today',
+            'domicilio'        => 'required|string|max:255',
+            'telefono'         => 'nullable|string|max:30',
+            'email'            => 'nullable|email|max:255',
+        ], [
+            'required'        => 'El campo :attribute es obligatorio.',
+            'unique'          => 'El :attribute ya está registrado.',
+            'max'             => 'El campo :attribute no puede superar :max caracteres.',
+            'email'           => 'Ingresá un correo electrónico válido.',
+            'date'            => 'Ingresá una fecha válida.',
+            'before_or_equal' => 'La fecha no puede ser posterior a hoy.',
+        ]);
 
-            Alumno::create($datos);
+        // Creamos el usuario para que el alumno pueda loguearse
+        // Usamos el legajo como email interno y el DNI como contraseña
+        $usuario = User::create([
+            'name'     => $datos['nombre'] . ' ' . $datos['apellido'],
+            'email'    => $datos['legajo'] . '@alumno.educar',
+            'password' => Hash::make($datos['dni']),
+            'role'     => 'alumno',
+        ]);
 
-            return redirect()
-                ->route('admin.alumnos.index')
-                ->with('success', 'Alumno registrado correctamente.');
-        }
+        // Creamos el alumno vinculado al usuario
+        $datos['user_id'] = $usuario->id;
+        Alumno::create($datos);
 
-    /**
-     * Display the specified resource.
-     */
+        return redirect()
+            ->route('admin.alumnos.index')
+            ->with('success', 'Alumno registrado. Credenciales → Usuario: ' . $datos['legajo'] . ' / Contraseña: ' . $datos['dni']);
+    }
+
     public function show(string $id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Alumno $alumno)
     {
         return view('alumnos.edit', compact('alumno'));
@@ -105,18 +103,18 @@ class AlumnoController extends Controller
                 'max:20',
                 Rule::unique('alumnos', 'dni')->ignore($alumno),
             ],
-            'nombre' => 'required|string|max:100',
-            'apellido' => 'required|string|max:100',
+            'nombre'           => 'required|string|max:100',
+            'apellido'         => 'required|string|max:100',
             'fecha_nacimiento' => 'required|date|before_or_equal:today',
-            'domicilio' => 'required|string|max:255',
-            'telefono' => 'nullable|string|max:30',
-            'email' => 'nullable|email|max:255',
+            'domicilio'        => 'required|string|max:255',
+            'telefono'         => 'nullable|string|max:30',
+            'email'            => 'nullable|email|max:255',
         ], [
-            'required' => 'El campo :attribute es obligatorio.',
-            'unique' => 'El :attribute ya está registrado.',
-            'max' => 'El campo :attribute no puede superar :max caracteres.',
-            'email' => 'Ingresá un correo electrónico válido.',
-            'date' => 'Ingresá una fecha válida.',
+            'required'        => 'El campo :attribute es obligatorio.',
+            'unique'          => 'El :attribute ya está registrado.',
+            'max'             => 'El campo :attribute no puede superar :max caracteres.',
+            'email'           => 'Ingresá un correo electrónico válido.',
+            'date'            => 'Ingresá una fecha válida.',
             'before_or_equal' => 'La fecha no puede ser posterior a hoy.',
         ]);
 
@@ -127,9 +125,6 @@ class AlumnoController extends Controller
             ->with('success', 'Alumno actualizado correctamente.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Alumno $alumno)
     {
         $alumno->update(['activo' => false]);

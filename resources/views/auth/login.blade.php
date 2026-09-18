@@ -29,36 +29,34 @@
             {{-- Protege contra ataques CSRF (peticiones falsas desde otros sitios) --}}
             @csrf
 
-            {{-- Campo Email --}}
-            <div class="mb-4">
-                <label class="block text-gray-700 font-medium mb-1">Email</label>
-                <input
-                    type="email"
-                    name="email"
-                    {{-- old('email') recarga el valor que escribiste si hubo error --}}
-                    value="{{ old('email') }}"
-                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
-                    placeholder="tu@email.com"
-                >
-                {{-- Muestra el error de validación del campo "email" si existe --}}
-                @error('email')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
+            {{-- Cambiar el campo email por legajo --}}
+{{-- Cambiar el campo email por legajo --}}
+<div class="mb-4">
+    <label class="block text-gray-700 font-medium mb-1">Legajo</label>
+    <input
+        type="text"
+        name="legajo"
+        value="{{ old('legajo') }}"
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+        placeholder="Tu número de legajo"
+    >
+    @error('legajo')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+    @enderror
+</div>
 
-            {{-- Campo Contraseña --}}
-            <div class="mb-6">
-                <label class="block text-gray-700 font-medium mb-1">Contraseña</label>
-                <input
-                    type="password"
-                    name="password"
-                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
-                    placeholder="••••••••"
-                >
-                @error('password')
-                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-                @enderror
-            </div>
+<div class="mb-6">
+    <label class="block text-gray-700 font-medium mb-1">Contraseña (DNI)</label>
+    <input
+        type="password"
+        name="password"
+        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+        placeholder="Tu DNI"
+    >
+    @error('password')
+        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+    @enderror
+</div>
 
             {{-- Botón de envío --}}
             <button type="submit"
