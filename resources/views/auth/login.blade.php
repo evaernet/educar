@@ -32,13 +32,13 @@
             {{-- Cambiar el campo email por legajo --}}
 {{-- Cambiar el campo email por legajo --}}
 <div class="mb-4">
-    <label class="block text-gray-700 font-medium mb-1">Legajo</label>
+    <label class="block text-gray-700 font-medium mb-1">Usuario</label>
     <input
         type="text"
         name="legajo"
         value="{{ old('legajo') }}"
         class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
-        placeholder="Tu número de legajo"
+        placeholder="Tu usuario"
     >
     @error('legajo')
         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

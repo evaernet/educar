@@ -38,6 +38,9 @@ class LoginController extends Controller
                 } elseif ($usuario->role === 'profesor') {
                     return redirect()->route('profesor.dashboard');
                 }
+                elseif ($usuario->role === 'padre') {
+    return redirect()->route('padre.dashboard');
+}
             }
 
             return back()
@@ -58,6 +61,10 @@ class LoginController extends Controller
                     ->withErrors(['legajo' => 'Usuario o contraseña incorrectos.'])
                     ->withInput($request->only('legajo'));
             }
+
+            if (!$alumno->activo) {
+    return back()->withErrors(['legajo' => 'El alumno se encuentra dado de baja.']);
+}
 
             if (Auth::attempt([
                 'email'    => $alumno->user->email,
