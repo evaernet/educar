@@ -43,8 +43,8 @@ class AlumnoController extends Controller
     public function store(Request $request)
     {
         $datos = $request->validate([
-            'legajo'           => 'required|string|max:20|unique:alumnos,legajo',
-            'dni'              => 'required|string|max:20|unique:alumnos,dni',
+            'legajo'           => 'required|string|regex:/^[0-9\-]{1,20}$/|max:20|unique:alumnos,legajo',
+            'dni'              => 'required|string|regex:/^\d{7,8}$/|max:20|unique:alumnos,dni',
             'nombre'           => 'required|string|max:100',
             'apellido'         => 'required|string|max:100',
             'fecha_nacimiento' => 'required|date|before_or_equal:today',
