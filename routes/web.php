@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\ProfesorController;
 
 // ============================================================
 // RUTAS PÚBLICAS — cualquiera puede entrar, sin estar logueado
@@ -82,3 +83,45 @@ Route::put('/admin/alumnos/{alumno}', [AlumnoController::class, 'update'])
 Route::delete('/admin/alumnos/{alumno}', [AlumnoController::class, 'destroy'])
     ->middleware(['auth', 'role:admin'])
     ->name('admin.alumnos.destroy');
+
+// ============================================================
+// RUTAS DE PROFESORES
+//
+// ¿Qué hacen?: Cada línea conecta una URL + método HTTP (GET/POST/PUT/DELETE)
+// con un método específico de ProfesorController. Es el mapa que le dice a
+// Laravel "cuando entren a tal dirección, ejecutá tal función".
+// Conexión: Mismo patrón que las rutas de alumnos de arriba, cambiando
+// AlumnoController por ProfesorController.
+// ============================================================
+
+// GET /admin/profesores -> llama a index(): muestra la lista con buscador
+Route::get('/admin/profesores', [ProfesorController::class, 'index'])
+    ->middleware(['auth', 'role:admin']) // solo entra si está logueado Y es admin
+    ->name('admin.profesores.index');    // nombre que usamos en los redirect() del controlador
+
+// GET /admin/profesores/create -> llama a create(): muestra el formulario vacío
+Route::get('/admin/profesores/create', [ProfesorController::class, 'create'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.profesores.create');
+
+// POST /admin/profesores -> llama a store(): guarda lo que mandó el formulario
+Route::post('/admin/profesores', [ProfesorController::class, 'store'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.profesores.store');
+
+// GET /admin/profesores/{profesor}/edit -> llama a edit(): formulario precargado
+// {profesor} es el id del profesor; Laravel lo convierte automáticamente en
+// el objeto Profesor completo (route model binding), como vimos en el controlador.
+Route::get('/admin/profesores/{profesor}/edit', [ProfesorController::class, 'edit'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.profesores.edit');
+
+// PUT /admin/profesores/{profesor} -> llama a update(): guarda los cambios
+Route::put('/admin/profesores/{profesor}', [ProfesorController::class, 'update'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.profesores.update');
+
+// DELETE /admin/profesores/{profesor} -> llama a destroy(): baja lógica (activo = false)
+Route::delete('/admin/profesores/{profesor}', [ProfesorController::class, 'destroy'])
+    ->middleware(['auth', 'role:admin'])
+    ->name('admin.profesores.destroy');
