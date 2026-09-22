@@ -58,38 +58,46 @@ class ProfesorController extends Controller
      */
     public function store(Request $request)
     {
-        //Es el control de seguridad. Revisa que el usuario haya llenado todos los campos requeridos, que el DNI tenga 7 u 8 números, y que ni el DNI, ni el legajo, ni el email se repitan en la base de datos.
-        //Si falta algo o hay un error, frena la ejecución y le muestra los mensajes en español al usuario.
+        // PASO 1: Validar los datos del formulario.
+        // Revisa que el usuario haya llenado todos los campos obligatorios, que
+        // el DNI tenga 7 u 8 numeros, y que ni el DNI, ni el legajo, ni el email
+        // se repitan en la tabla "profesors" (asi se llama la tabla real, por la
+        // pluralizacion automatica de Laravel al crear la migracion).
+        // Si falta algo o hay un error, Laravel frena aca y vuelve al formulario
+        // mostrando los mensajes en español de abajo.
         $datos = $request->validate([
-            'legajo'=> 'required|string|max:20|unique:profesores,legajo',
-            'dni' => 'requierd| string | regex:/^\d{7,8}$/ | unique: profesores, dni ',
-            'nombre' => 'requierd| max:60',
-            'apellido' => 'requierd | max:100',
-            'especilidad' => 'requierd|max:100',
-            'email'=> 'requierd | max:100 | unique: profesores, email',
-            'telefono'=> 'requierd| string | max:30 '
-
+            'legajo'       => 'required|string|max:20|unique:profesors,legajo',
+            'dni'          => 'required|string|regex:/^\d{7,8}$/|max:20|unique:profesors,dni',
+            'nombre'       => 'required|string|max:100',
+            'apellido'     => 'required|string|max:100',
+            'especialidad' => 'required|string|max:100',
+            'email'        => 'required|email|max:255|unique:profesors,email',
+            'telefono'     => 'required|string|max:30',
         ], [
-            //Mensaje de error en español que se muestran en el formulario
-            'requiered' => 'El campo : attribute es obligatorio',
-            'unique' => 'El :attribute ya esta regisstrado',
-            'max'=> 'El campo :attribute no puede superar :max caracteres',
-            'email'=>'Ingresa un correo electronico valida',
-            'regex'=> 'El dni debe tener 7 u 8 digitos, sin puntos',
+            // Mensajes de error en español que se muestran en el formulario
+            'required' => 'El campo :attribute es obligatorio.',
+            'unique'   => 'El :attribute ya está registrado.',
+            'max'      => 'El campo :attribute no puede superar :max caracteres.',
+            'email'    => 'Ingresá un correo electrónico válido.',
+            'regex'    => 'El DNI debe tener 7 u 8 números, sin puntos.',
         ]);
 
-
-        // Creamos el usuario para que el profesor pueda loguearse con su email.
-        // Usamos el DNI como contraseña inicial (igual que con los alumnos).
+        // PASO 2: Creamos el usuario para que el profesor pueda loguearse con su
+        // email. Usamos el DNI como contraseña inicial (igual que con los alumnos).
         $usuario = User::create([
-            'name' => $datos['nombre'] . ' ' .$datos['apellido'], 'email' => $datos['email'], 'password' => Hash::make($datos['dni']), 'role'=>'profesor', 
+            'name'     => $datos['nombre'] . ' ' . $datos['apellido'],
+            'email'    => $datos['email'],
+            'password' => Hash::make($datos['dni']),
+            'role'     => 'profesor',
         ]);
 
         // Le agrego a $datos el id del usuario recien creado, para que
         // quede guardado en la fila del profesor y los dos esten vinculados.
         $datos['user_id'] = $usuario->id;
 
-        Profesor::created($datos);
+        // Profesor::create() (sin "d" al final) es el que realmente existe y
+        // guarda la fila nueva en la tabla.
+        Profesor::create($datos);
 
         // redirect()            -> mandá al usuario a otra página
         // ->route('admin.profesores.index') -> a la ruta que tiene ese nombre
@@ -141,14 +149,14 @@ class ProfesorController extends Controller
         $datos = $request->validate([
             
             // Rule::unique('tabla', 'columna')->ignore($profesor)
-            // ¿Qué hace ignore()?: Revisa que el legajo no esté repetido en la tabla 'profesores',
+            // ¿Qué hace ignore()?: Revisa que el legajo no esté repetido en la tabla 'profesors',
             // PERO ignora el registro del profesor que estamos editando actualmente.
             // Si no pusiéramos ignore(), al guardar sin cambiar el legajo nos daría error de "ya registrado".
             'legajo' => [
                 'required',
                 'string',
                 'max:20',
-                Rule::unique('profesores', 'legajo')->ignore($profesor),
+                Rule::unique('profesors', 'legajo')->ignore($profesor),
             ],
 
             'dni' => [
@@ -156,7 +164,7 @@ class ProfesorController extends Controller
                 'string',
                 'regex:/^\d{7,8}$/',
                 'max:20',
-                Rule::unique('profesores', 'dni')->ignore($profesor),
+                Rule::unique('profesors', 'dni')->ignore($profesor),
             ],
 
             'nombre'       => 'required|string|max:100',
@@ -167,7 +175,7 @@ class ProfesorController extends Controller
                 'required',
                 'email',
                 'max:255',
-                Rule::unique('profesores', 'email')->ignore($profesor),
+                Rule::unique('profesors', 'email')->ignore($profesor),
             ],
 
             'telefono'     => 'required|string|max:30',
