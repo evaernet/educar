@@ -23,7 +23,7 @@ class ProfesorController extends Controller
         $buscar = $request->input('buscar');
 
         if($buscar){
-            $profesores = Profesor::where('nombre', 'like', '%' .$buscar , '%') // Profesor-> el modelo, representa la tabla "profesores"
+            $profesores = Profesor::where('nombre', 'like', '%' .$buscar . '%') // Profesor-> el modelo, representa la tabla "profesores"
             // ::where(...)   -> "::" = llamo al metodo directo sobre la clase,
             // 'nombre'-> la columna donde filtro
             // 'like' -> tipo de comparacion: "que se parezca", no "que sea igual"
@@ -35,10 +35,10 @@ class ProfesorController extends Controller
             ->paginate(10); // corta el resultado en paginas de 10
         }else{
             // Si no buscó nada, traigo todos los profesores ordenados
-            $profesores = Profesor::oderBy('apellido')->paginate(10);
+            $profesores = Profesor::orderBy('apellido')->paginate(10);
         }
         // Retorna la vista 'profesores/index.blade.php' pasándole la lista de profesores y el texto buscado.
-        return view('profesor.index', compact('profesores', 'buscar'));
+        return view('profesores.index', compact('profesores', 'buscar'));
 
 
     }
