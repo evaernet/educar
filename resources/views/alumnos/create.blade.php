@@ -4,9 +4,16 @@
 
 @section('contenido')
 <div class="max-w-2xl mx-auto">
+    {{-- Volver al listado (ida y vuelta rápida a esta misma sección) --}}
     <a href="{{ route('admin.alumnos.index') }}"
        class="text-blue-700 hover:underline">
         Volver al listado
+    </a>
+
+    {{-- Volver directo al panel principal, sin pasar por el listado --}}
+    <a href="{{ route('admin.dashboard') }}"
+       class="text-blue-700 hover:underline ml-4">
+        Volver al panel
     </a>
 
     <h1 class="text-3xl font-bold text-gray-800 my-6">
