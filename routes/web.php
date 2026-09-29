@@ -8,6 +8,9 @@ use App\Http\Controllers\AlumnoController;
 use App\Http\Controllers\NivelController;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\MateriaController;
+use App\Http\Controllers\AsignacionAcademicaController;
+use App\Http\Controllers\CicloLectivoController;
+use App\Http\Controllers\HorarioClaseController;
 use App\Http\Controllers\ProfesorController;
 
 // ============================================================
@@ -90,6 +93,14 @@ Route::delete('/admin/alumnos/{alumno}', [AlumnoController::class, 'destroy'])
 Route::resource('admin/niveles', NivelController::class)->parameters(['niveles'=>'nivel'])->names('admin.niveles')->middleware(['auth','role:admin']);
 Route::resource('admin/cursos', CursoController::class)->parameters(['cursos'=>'curso'])->names('admin.cursos')->middleware(['auth','role:admin']);
 Route::resource('admin/materias', MateriaController::class)->parameters(['materias'=>'materia'])->names('admin.materias')->middleware(['auth','role:admin']);
+Route::get('/admin/asignaciones', [AsignacionAcademicaController::class, 'index'])->middleware(['auth','role:admin'])->name('admin.asignaciones.index');
+Route::get('/admin/asignaciones/create', [AsignacionAcademicaController::class, 'create'])->middleware(['auth','role:admin'])->name('admin.asignaciones.create');
+Route::post('/admin/asignaciones', [AsignacionAcademicaController::class, 'store'])->middleware(['auth','role:admin'])->name('admin.asignaciones.store');
+Route::get('/admin/asignaciones/{asignacion}/edit', [AsignacionAcademicaController::class, 'edit'])->middleware(['auth','role:admin'])->name('admin.asignaciones.edit');
+Route::put('/admin/asignaciones/{asignacion}', [AsignacionAcademicaController::class, 'update'])->middleware(['auth','role:admin'])->name('admin.asignaciones.update');
+Route::delete('/admin/asignaciones/{asignacion}', [AsignacionAcademicaController::class, 'destroy'])->middleware(['auth','role:admin'])->name('admin.asignaciones.destroy');
+Route::resource('admin/ciclos', CicloLectivoController::class)->parameters(['ciclos'=>'ciclo'])->names('admin.ciclos')->middleware(['auth','role:admin']);
+Route::resource('admin/horarios', HorarioClaseController::class)->parameters(['horarios'=>'horario'])->names('admin.horarios')->middleware(['auth','role:admin']);
 Route::resource('admin/profesores', ProfesorController::class)
     ->parameters(['profesores' => 'profesor'])
     ->names('admin.profesores')

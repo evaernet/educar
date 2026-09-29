@@ -14,6 +14,9 @@
         <a href="{{ route('admin.niveles.index') }}" class="inline-block mt-6 ml-2 bg-purple-700 text-white px-4 py-2 rounded">Gestionar niveles</a>
         <a href="{{ route('admin.cursos.index') }}" class="inline-block mt-6 ml-2 bg-orange-700 text-white px-4 py-2 rounded">Gestionar cursos</a>
         <a href="{{ route('admin.materias.index') }}" class="inline-block mt-6 ml-2 bg-pink-700 text-white px-4 py-2 rounded">Gestionar materias</a>
+        <a href="{{ route('admin.asignaciones.index') }}" class="inline-block mt-6 ml-2 bg-indigo-700 text-white px-4 py-2 rounded">Asignaciones académicas</a>
+        <a href="{{ route('admin.ciclos.index') }}" class="inline-block mt-6 ml-2 bg-teal-700 text-white px-4 py-2 rounded">Ciclos lectivos</a>
+        <a href="{{ route('admin.horarios.index') }}" class="inline-block mt-6 ml-2 bg-cyan-700 text-white px-4 py-2 rounded">Horarios</a>
         <a href="{{ route('admin.profesores.index') }}" class="inline-block mt-6 ml-2 bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded">Gestionar profesores</a>
     </div>
 
