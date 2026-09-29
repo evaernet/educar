@@ -13,6 +13,9 @@ use App\Http\Controllers\CicloLectivoController;
 use App\Http\Controllers\HorarioClaseController;
 use App\Http\Controllers\ProfesorController;
 use App\Http\Controllers\InscripcionAcademicaController;
+use App\Http\Controllers\DeporteController;
+use App\Http\Controllers\HorarioDeporteController;
+use App\Http\Controllers\InscripcionDeportivaController;
 
 // ============================================================
 // RUTAS PÚBLICAS — cualquiera puede entrar, sin estar logueado
@@ -117,3 +120,10 @@ Route::resource('admin/inscripciones', InscripcionAcademicaController::class)
     ->parameters(['inscripciones' => 'inscripcione'])
     ->names('admin.inscripciones')
     ->middleware(['auth', 'role:admin']);
+Route::resource('admin/deportes', DeporteController::class)->except('show')->names('admin.deportes')->middleware(['auth', 'role:admin']);
+Route::get('admin/deportes/{deporte}/horarios', [HorarioDeporteController::class, 'index'])->name('admin.deportes.horarios.index')->middleware(['auth', 'role:admin']);
+Route::post('admin/deportes/{deporte}/horarios', [HorarioDeporteController::class, 'store'])->name('admin.deportes.horarios.store')->middleware(['auth', 'role:admin']);
+Route::delete('admin/deportes/{deporte}/horarios/{horarioDeporte}', [HorarioDeporteController::class, 'destroy'])->name('admin.deportes.horarios.destroy')->middleware(['auth', 'role:admin']);
+Route::get('admin/deportes-inscripciones', [InscripcionDeportivaController::class, 'index'])->name('admin.deportes.inscripciones.index')->middleware(['auth', 'role:admin']);
+Route::post('admin/deportes-inscripciones', [InscripcionDeportivaController::class, 'store'])->name('admin.deportes.inscripciones.store')->middleware(['auth', 'role:admin']);
+Route::delete('admin/deportes-inscripciones/{inscripcionDeportiva}', [InscripcionDeportivaController::class, 'destroy'])->name('admin.deportes.inscripciones.destroy')->middleware(['auth', 'role:admin']);

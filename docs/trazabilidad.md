@@ -10,6 +10,7 @@
 | RF07/RF11 - asignaciones | `AsignacionAcademicaController.php` | Prueba de duplicado y baja lógica | Cubierto parcialmente |
 | RF12 - horarios | `HorarioClaseController.php` | Prueba de superposición para curso o profesor | Cubierto parcialmente |
 | RF13 - inscripción académica | `InscripcionAcademicaController.php`, modelo, migración y vistas `inscripciones/` | `AcademicEnrollmentTest`: alta única, edición y baja lógica | Cubierto |
+| RF14-RF15 - deportes | Modelos y controladores de deportes, horarios e inscripciones deportivas | `SportsEnrollmentTest`: límite de dos deportes y conflicto horario | Cubierto |
 | RF19-RF20 - padre e hijos | Pendiente | Pendiente | No iniciado |
 | RF24 - API REST | Pendiente | Pendiente | No iniciado |
 

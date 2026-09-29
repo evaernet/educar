@@ -18,7 +18,10 @@
 - La base de datos impide que un alumno tenga más de una inscripción en el mismo ciclo.
 - Se aplicó la migración `2026_09_29_130000_create_inscripcion_academicas_table`.
 - Se agregaron pruebas del módulo; la suite completa alcanzó 8 tests y 42 aserciones aprobadas.
+- Se implementó la gestión de deportes, horarios deportivos e inscripciones de alumnos.
+- Se limita a dos deportes activos por alumno y se bloquean horarios deportivos superpuestos.
+- Se aplicaron las migraciones de deportes y se agregaron pruebas; la suite completa alcanzó 10 tests y 52 aserciones aprobadas.
 
 ## Próximo avance
 
-Implementar la gestión de deportes, con límite de dos disciplinas por alumno y validación de conflictos horarios.
+Implementar los servicios de comedor y transporte.

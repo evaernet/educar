@@ -37,4 +37,9 @@ class Alumno extends Model
     {
         return $this->hasMany(InscripcionAcademica::class);
     }
+
+    public function inscripcionesDeportivas()
+    {
+        return $this->hasMany(InscripcionDeportiva::class);
+    }
 }

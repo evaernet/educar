@@ -13,7 +13,7 @@ El sistema administra información académica, administrativa y extracurricular 
 | RF08 | Controlar acceso por rol. | Implementado |
 | RF09-RF12 | Gestionar niveles, cursos, materias, ciclos, asignaciones y horarios. | Implementado parcialmente |
 | RF13 | Inscribir alumno a un único curso por ciclo. | Implementado |
-| RF14-RF15 | Gestionar hasta dos deportes y evitar conflictos de horarios. | Pendiente |
+| RF14-RF15 | Gestionar hasta dos deportes y evitar conflictos de horarios. | Implementado |
 | RF17-RF18 | Gestionar comedor y transporte. | Pendiente |
 | RF19-RF20 | Permitir al padre consultar y gestionar datos de sus hijos. | Pendiente |
 | RF21-RF23 | Generar reportes académicos, deportivos y de servicios. | Pendiente |
@@ -44,4 +44,4 @@ El sistema administra información académica, administrativa y extracurricular 
 
 ## Próximo requisito a implementar
 
-**Deportes:** permitir hasta dos deportes por alumno y evitar superposiciones de horarios.
+**Comedor y transporte:** administrar inscripciones y restricciones de ambos servicios.
