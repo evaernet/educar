@@ -12,6 +12,7 @@ use App\Http\Controllers\AsignacionAcademicaController;
 use App\Http\Controllers\CicloLectivoController;
 use App\Http\Controllers\HorarioClaseController;
 use App\Http\Controllers\ProfesorController;
+use App\Http\Controllers\InscripcionAcademicaController;
 
 // ============================================================
 // RUTAS PÚBLICAS — cualquiera puede entrar, sin estar logueado
@@ -110,4 +111,9 @@ Route::resource('admin/horarios', HorarioClaseController::class)->parameters(['h
 Route::resource('admin/profesores', ProfesorController::class)
     ->parameters(['profesores' => 'profesor'])
     ->names('admin.profesores')
+    ->middleware(['auth', 'role:admin']);
+Route::resource('admin/inscripciones', InscripcionAcademicaController::class)
+    ->except('show')
+    ->parameters(['inscripciones' => 'inscripcione'])
+    ->names('admin.inscripciones')
     ->middleware(['auth', 'role:admin']);

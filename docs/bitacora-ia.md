@@ -8,6 +8,7 @@ Esta bitácora registra el uso de IA durante el desarrollo. Cada propuesta debe 
 | 2 | Completar configuración académica. | Agregar edición/baja de asignaciones y prevenir solapamientos de horarios. | Codex | Controladores, rutas, vistas y migración propuestos. | Sí | Sintaxis, rutas, migración y caché de vistas verificados. | Asignaciones editables/inactivables y validación de conflictos. |
 | 3 | Probar reglas críticas. | Crear pruebas aisladas para roles, duplicados, baja lógica y horarios. | Codex | Suite Feature con SQLite en memoria. | Sí | Se ejecutaron 3 tests y 13 aserciones aprobadas. | Cobertura inicial automatizada. |
 | 4 | Revisar controles de acceso. | Proteger cierre de sesión, limitar intentos y reforzar contraseñas nuevas. | Codex | Rutas, validaciones y pruebas de seguridad propuestas. | Sí | Se ejecutaron 6 tests y 31 aserciones aprobadas. | Controles básicos de acceso cubiertos. |
+| 5 | Implementar inscripción académica. | Vincular alumno, curso y ciclo sin permitir duplicados. | Codex | Modelo, migración, panel de administración y pruebas propuestos. | Sí | Migración aplicada y 8 tests con 42 aserciones aprobados. | RF13 cubierto. |
 
 ## Registro futuro
 

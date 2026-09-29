@@ -14,7 +14,11 @@
 - Se incorporaron límites de intentos para inicio de sesión y registro, y una política reforzada para contraseñas nuevas.
 - Se agregó la suite `SecurityTest` para validar estos controles.
 - Se ejecutaron 6 pruebas automatizadas con 31 aserciones aprobadas.
+- Se implementó la inscripción académica de alumnos por ciclo lectivo y curso, con edición y baja lógica.
+- La base de datos impide que un alumno tenga más de una inscripción en el mismo ciclo.
+- Se aplicó la migración `2026_09_29_130000_create_inscripcion_academicas_table`.
+- Se agregaron pruebas del módulo; la suite completa alcanzó 8 tests y 42 aserciones aprobadas.
 
 ## Próximo avance
 
-Implementar inscripción académica y registrar en este archivo las decisiones, pruebas y resultados.
+Implementar la gestión de deportes, con límite de dos disciplinas por alumno y validación de conflictos horarios.

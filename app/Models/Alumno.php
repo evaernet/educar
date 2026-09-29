@@ -32,4 +32,9 @@ class Alumno extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function inscripciones()
+    {
+        return $this->hasMany(InscripcionAcademica::class);
+    }
 }

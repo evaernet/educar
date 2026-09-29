@@ -17,6 +17,7 @@
         <a href="{{ route('admin.asignaciones.index') }}" class="inline-block mt-6 ml-2 bg-indigo-700 text-white px-4 py-2 rounded">Asignaciones académicas</a>
         <a href="{{ route('admin.ciclos.index') }}" class="inline-block mt-6 ml-2 bg-teal-700 text-white px-4 py-2 rounded">Ciclos lectivos</a>
         <a href="{{ route('admin.horarios.index') }}" class="inline-block mt-6 ml-2 bg-cyan-700 text-white px-4 py-2 rounded">Horarios</a>
+        <a href="{{ route('admin.inscripciones.index') }}" class="inline-block mt-6 ml-2 bg-violet-700 text-white px-4 py-2 rounded">Inscripciones académicas</a>
         <a href="{{ route('admin.profesores.index') }}" class="inline-block mt-6 ml-2 bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded">Gestionar profesores</a>
     </div>
 
