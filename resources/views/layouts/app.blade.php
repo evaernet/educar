@@ -19,10 +19,12 @@
             <div class="flex items-center gap-4">
                 {{-- auth()->user() devuelve el usuario logueado --}}
                 <span>Hola, {{ auth()->user()->name }}</span>
-                <a href="{{ route('logout') }}"
-                   class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded text-sm">
-                    Cerrar sesión
-                </a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded text-sm">
+                        Cerrar sesión
+                    </button>
+                </form>
             </div>
         </nav>
     @endauth

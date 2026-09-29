@@ -72,7 +72,7 @@
                     type="password"
                     name="password"
                     class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
-                    placeholder="Mínimo 6 caracteres"
+                    placeholder="Mínimo 8 caracteres, mayúscula y número"
                 >
                 @error('password')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>

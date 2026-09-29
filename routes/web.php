@@ -27,16 +27,22 @@ Route::get('/login', [LoginController::class, 'mostrarFormulario'])->name('login
 
 // POST /login → procesa el formulario cuando apretás "Entrar"
 // GET y POST son métodos HTTP. GET = pedir una página. POST = enviar datos.
-Route::post('/login', [LoginController::class, 'procesar'])->name('login.procesar');
+Route::post('/login', [LoginController::class, 'procesar'])
+    ->middleware('throttle:login')
+    ->name('login.procesar');
 
-// GET /logout → cierra la sesión
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+// POST /logout → cierra la sesión con protección CSRF
+Route::post('/logout', [LoginController::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout');
 
 // GET /register → muestra el formulario de registro
 Route::get('/register', [RegisterController::class, 'mostrarFormulario'])->name('register');
 
 // POST /register → procesa el registro
-Route::post('/register', [RegisterController::class, 'procesar'])->name('register.procesar');
+Route::post('/register', [RegisterController::class, 'procesar'])
+    ->middleware('throttle:register')
+    ->name('register.procesar');
 
 
 // ============================================================

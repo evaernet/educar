@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class RegisterController extends Controller
 {
@@ -22,14 +23,16 @@ class RegisterController extends Controller
         $request->validate([
             'name'                  => 'required|string|max:100',
             'email'                 => 'required|email|unique:users,email', // unique verifica que no exista en la tabla users
-            'password'              => 'required|min:6|confirmed', // "confirmed" busca un campo "password_confirmation"
+            'password'              => ['required', 'confirmed', Password::min(8)->mixedCase()->numbers()],
             'role'                  => 'required|in:alumno,padre', // solo puede ser alumno o padre
         ], [
             // Acá personalizamos los mensajes de error en español
             'name.required'         => 'El nombre es obligatorio.',
             'email.required'        => 'El email es obligatorio.',
             'email.unique'          => 'Ya existe una cuenta con ese email.',
-            'password.min'          => 'La contraseña debe tener al menos 6 caracteres.',
+            'password.min'          => 'La contraseña debe tener al menos 8 caracteres.',
+            'password.mixed'        => 'La contraseña debe incluir mayúsculas y minúsculas.',
+            'password.numbers'      => 'La contraseña debe incluir al menos un número.',
             'password.confirmed'    => 'Las contraseñas no coinciden.',
             'role.required'         => 'Seleccioná un rol.',
             'role.in'               => 'Rol no válido.',

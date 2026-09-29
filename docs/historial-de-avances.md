@@ -10,6 +10,10 @@
 - Se restauraron dependencias de desarrollo y se creó la estructura base de PHPUnit.
 - Se agregó `tests/Feature/AcademicConfigurationTest.php`.
 - Se ejecutaron 3 pruebas automatizadas con 13 aserciones aprobadas usando SQLite en memoria.
+- Se protegió el cierre de sesión mediante POST, autenticación y token CSRF.
+- Se incorporaron límites de intentos para inicio de sesión y registro, y una política reforzada para contraseñas nuevas.
+- Se agregó la suite `SecurityTest` para validar estos controles.
+- Se ejecutaron 6 pruebas automatizadas con 31 aserciones aprobadas.
 
 ## Próximo avance
 

@@ -23,7 +23,9 @@ El sistema administra información académica, administrativa y extracurricular 
 ## Requerimientos no funcionales
 
 - Interfaz simple, responsive y apta para escritorio y móvil.
-- Autenticación con contraseñas cifradas, sesiones y autorización por rol.
+- Autenticación con contraseñas cifradas, sesiones, autorización por rol y cierre de sesión protegido por CSRF.
+- Prevención básica de fuerza bruta: límite de cinco intentos de acceso por minuto y tres registros por IP por minuto.
+- Las nuevas contraseñas deben tener al menos ocho caracteres, mayúsculas, minúsculas y un número.
 - Respuesta normal de interfaz en menos de tres segundos.
 - Arquitectura MVC, código mantenible y documentación interna.
 - Diseño extensible para incorporar deportes, pagos, servicios, API y aplicación móvil.
