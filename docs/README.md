@@ -8,5 +8,6 @@ Esta carpeta concentra la documentación de trabajo del sistema **Educar Para Tr
 - [Trazabilidad](trazabilidad.md): relación entre requisito, módulo y prueba.
 - [Bitácora de IA](bitacora-ia.md): registro verificable del uso de IA.
 - [Historial de avances](historial-de-avances.md): decisiones y cambios reales del proyecto.
+- [Identidad visual](diseno/identidad-visual.md): guía y referencias del estilo web aprobado.
 
 Los documentos Word de planificación se encuentran en la carpeta `../../output/` del espacio de trabajo.

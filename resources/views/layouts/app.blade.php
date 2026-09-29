@@ -1,39 +1,25 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    {{-- @yield('titulo') es un "hueco" que cada vista va a llenar --}}
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('titulo', 'Educar Para Transformar')</title>
-
-    {{-- Tailwind CSS desde CDN, no necesitás instalarlo --}}
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>tailwind.config={theme:{extend:{colors:{institucional:{azul:'#0B5EA8',oscuro:'#082E65',turquesa:'#00A9B5',verde:'#0A9F91'}},boxShadow:{tarjeta:'0 18px 45px rgba(8,46,101,.16)'}}}}</script>
+    <style>
+        body{font-family:Inter,ui-sans-serif,system-ui,sans-serif}.fondo-institucional{background:linear-gradient(128deg,#075cb6 0%,#009fbd 48%,#11c7b1 100%);position:relative}.fondo-institucional:before,.fondo-institucional:after{content:'';position:fixed;inset:0;pointer-events:none;opacity:.3;background:repeating-radial-gradient(ellipse at 0% 50%,transparent 0 13px,rgba(255,255,255,.75) 14px 15px,transparent 16px 27px)}.fondo-institucional:after{transform:scaleX(-1)}.superficie-app{background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(244,250,255,.96))}input,select{transition:border-color .2s,box-shadow .2s}input:focus,select:focus{border-color:#00A9B5!important;box-shadow:0 0 0 3px rgba(0,169,181,.15);outline:none}
+    </style>
 </head>
-<body class="bg-gray-100 min-h-screen">
-
-    {{-- Barra de navegación (solo se muestra si el usuario está logueado) --}}
-    @auth
-        <nav class="bg-blue-800 text-white px-6 py-3 flex justify-between items-center">
-            <span class="font-bold text-lg">🏫 Educar Para Transformar</span>
-            <div class="flex items-center gap-4">
-                {{-- auth()->user() devuelve el usuario logueado --}}
-                <span>Hola, {{ auth()->user()->name }}</span>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="bg-red-500 hover:bg-red-600 px-3 py-1 rounded text-sm">
-                        Cerrar sesión
-                    </button>
-                </form>
-            </div>
-        </nav>
-    @endauth
-
-    {{-- Contenido principal: cada vista pone lo suyo acá --}}
-    <main class="p-6">
-        {{-- @yield('contenido') es otro hueco para el contenido de cada página --}}
-        @yield('contenido')
-    </main>
-
+<body class="min-h-screen text-slate-800">
+@guest
+    <main class="fondo-institucional min-h-screen relative flex items-center justify-center p-5 sm:p-8"><div class="relative z-10 w-full">@yield('contenido')</div></main>
+@endguest
+@auth
+    <div class="fondo-institucional min-h-screen relative p-3 lg:p-6"><div class="relative z-10 mx-auto flex min-h-[calc(100vh-1.5rem)] max-w-[1600px] overflow-hidden rounded-[2rem] bg-white shadow-tarjeta lg:min-h-[calc(100vh-3rem)]">
+        <aside class="hidden w-72 shrink-0 flex-col bg-gradient-to-b from-institucional-oscuro to-[#061b42] p-6 text-white lg:flex"><a href="{{ auth()->user()->role === 'admin' ? route('admin.dashboard') : url('/') }}" class="mb-10 flex items-center gap-3"><span class="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/15 text-2xl">🎓</span><span class="font-bold leading-tight">Educar Para<br>Transformar</span></a>
+            @if(auth()->user()->role === 'admin')<nav class="space-y-1 text-sm font-medium"><a href="{{ route('admin.dashboard') }}" class="{{ request()->routeIs('admin.dashboard') ? 'bg-blue-500/90 shadow-lg' : 'hover:bg-white/10' }} flex items-center gap-3 rounded-xl px-4 py-3">⌂ <span>Inicio</span></a><a href="{{ route('admin.alumnos.index') }}" class="{{ request()->routeIs('admin.alumnos.*') ? 'bg-blue-500/90 shadow-lg' : 'hover:bg-white/10' }} flex items-center gap-3 rounded-xl px-4 py-3">♟ <span>Alumnos</span></a><a href="{{ route('admin.inscripciones.index') }}" class="{{ request()->routeIs('admin.inscripciones.*') ? 'bg-blue-500/90 shadow-lg' : 'hover:bg-white/10' }} flex items-center gap-3 rounded-xl px-4 py-3">▣ <span>Inscripciones</span></a><a href="{{ route('admin.deportes.index') }}" class="{{ request()->routeIs('admin.deportes.*') ? 'bg-blue-500/90 shadow-lg' : 'hover:bg-white/10' }} flex items-center gap-3 rounded-xl px-4 py-3">🏆 <span>Deportes</span></a><a href="{{ route('admin.profesores.index') }}" class="{{ request()->routeIs('admin.profesores.*') ? 'bg-blue-500/90 shadow-lg' : 'hover:bg-white/10' }} flex items-center gap-3 rounded-xl px-4 py-3">♙ <span>Profesores</span></a><a href="{{ route('admin.cursos.index') }}" class="{{ request()->routeIs('admin.cursos.*') ? 'bg-blue-500/90 shadow-lg' : 'hover:bg-white/10' }} flex items-center gap-3 rounded-xl px-4 py-3">▤ <span>Cursos</span></a><a href="{{ route('admin.horarios.index') }}" class="{{ request()->routeIs('admin.horarios.*') ? 'bg-blue-500/90 shadow-lg' : 'hover:bg-white/10' }} flex items-center gap-3 rounded-xl px-4 py-3">◫ <span>Horarios</span></a></nav>@endif
+            <p class="mt-auto text-xs text-blue-100/70">Gestión educativa integral</p></aside>
+        <section class="superficie-app min-w-0 flex-1"><header class="flex items-center justify-between border-b border-slate-100 bg-white/80 px-5 py-4 backdrop-blur sm:px-8"><a href="{{ auth()->user()->role === 'admin' ? route('admin.dashboard') : url('/') }}" class="flex items-center gap-2 font-bold text-institucional-oscuro lg:hidden"><span class="text-xl">🎓</span> Educar Para Transformar</a><span class="hidden lg:block"></span><div class="flex items-center gap-3 text-sm"><span class="hidden text-slate-600 sm:block">Hola, <strong class="text-institucional-oscuro">{{ auth()->user()->name }}</strong></span><form method="POST" action="{{ route('logout') }}">@csrf<button type="submit" class="rounded-xl border border-slate-200 bg-white px-3 py-2 font-medium text-institucional-oscuro transition hover:border-institucional-turquesa hover:bg-cyan-50">↪ <span class="hidden sm:inline">Cerrar sesión</span></button></form></div></header><main class="p-5 sm:p-8 lg:p-10">@yield('contenido')</main></section>
+    </div></div>
+@endauth
 </body>
 </html>

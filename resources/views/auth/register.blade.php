@@ -3,12 +3,10 @@
 
 @section('contenido')
 
-<div class="flex justify-center items-center min-h-screen -mt-16">
-    <div class="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
+<div class="mx-auto max-w-md">
+    <div class="rounded-[2rem] bg-white p-8 shadow-tarjeta sm:p-10">
 
-        <h1 class="text-2xl font-bold text-center text-blue-800 mb-6">
-            📝 Crear Cuenta
-        </h1>
+        <div class="mb-7 text-center"><div class="mx-auto mb-3 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-institucional-azul to-institucional-turquesa text-2xl">🎓</div><h1 class="text-2xl font-extrabold text-institucional-oscuro">Crear cuenta</h1><p class="mt-1 text-sm text-institucional-verde">Sumate a nuestra comunidad educativa</p></div>
 
         <form action="{{ route('register.procesar') }}" method="POST">
             @csrf
@@ -20,7 +18,7 @@
                     type="text"
                     name="name"
                     value="{{ old('name') }}"
-                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+                    class="w-full rounded-xl border border-slate-300 px-4 py-3"
                     placeholder="Juan Pérez"
                 >
                 @error('name')
@@ -35,7 +33,7 @@
                     type="email"
                     name="email"
                     value="{{ old('email') }}"
-                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+                    class="w-full rounded-xl border border-slate-300 px-4 py-3"
                     placeholder="tu@email.com"
                 >
                 @error('email')
@@ -49,7 +47,7 @@
                 <label class="block text-gray-700 font-medium mb-1">Me registro como</label>
                 <select
                     name="role"
-                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+                    class="w-full rounded-xl border border-slate-300 px-4 py-3"
                 >
                     <option value="">-- Seleccioná --</option>
                     {{-- old('role') mantiene la selección si hubo error --}}
@@ -71,7 +69,7 @@
                 <input
                     type="password"
                     name="password"
-                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+                    class="w-full rounded-xl border border-slate-300 px-4 py-3"
                     placeholder="Mínimo 8 caracteres, mayúscula y número"
                 >
                 @error('password')
@@ -87,21 +85,21 @@
                 <input
                     type="password"
                     name="password_confirmation"
-                    class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
+                    class="w-full rounded-xl border border-slate-300 px-4 py-3"
                     placeholder="Repetí la contraseña"
                 >
             </div>
 
             <button type="submit"
-                class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 rounded">
+                class="w-full rounded-xl bg-gradient-to-r from-institucional-azul to-institucional-turquesa py-3 font-bold text-white shadow-lg transition hover:-translate-y-0.5">
                 Crear cuenta
             </button>
 
         </form>
 
-        <p class="text-center text-gray-500 text-sm mt-4">
+        <p class="text-center text-slate-500 text-sm mt-6">
             ¿Ya tenés cuenta?
-            <a href="{{ route('login') }}" class="text-blue-600 hover:underline">
+            <a href="{{ route('login') }}" class="font-semibold text-institucional-azul hover:underline">
                 Iniciá sesión
             </a>
         </p>

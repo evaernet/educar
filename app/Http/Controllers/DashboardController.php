@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Alumno;
+use App\Models\Curso;
+use App\Models\Deporte;
+use App\Models\InscripcionAcademica;
+
 class DashboardController extends Controller
 {
     // Cada función simplemente devuelve su vista correspondiente
@@ -11,7 +16,12 @@ class DashboardController extends Controller
     {
         // view('dashboard.admin') busca el archivo
         // resources/views/dashboard/admin.blade.php
-        return view('dashboard.admin');
+        return view('dashboard.admin', [
+            'alumnosActivos' => Alumno::where('activo', true)->count(),
+            'cursos' => Curso::where('activo', true)->count(),
+            'inscripcionesActivas' => InscripcionAcademica::where('activo', true)->count(),
+            'deportes' => Deporte::where('activo', true)->count(),
+        ]);
     }
 
     public function profesor()
