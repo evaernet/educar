@@ -8,19 +8,23 @@
         <div class="rounded-2xl bg-white p-5 shadow-sm"><div class="flex items-center gap-4"><span class="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-50 text-2xl">{{ $icono }}</span><div><p class="text-sm font-medium text-slate-600">{{ $etiqueta }}</p><p class="text-3xl font-extrabold {{ $color }}">{{ $valor }}</p></div></div></div>
     @endforeach
 </div>
-<section class="rounded-3xl bg-white p-6 shadow-sm"><h2 class="text-xl font-bold text-institucional-oscuro">Accesos rápidos</h2><p class="mt-1 text-sm text-slate-500">Elegí una tarea para continuar.</p><div class="mt-5 flex flex-wrap gap-3">
-        <a href="{{ route('admin.alumnos.index') }}"
-            class="inline-block bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-4 py-3 rounded-xl shadow-sm hover:-translate-y-0.5 transition">
-            Gestionar alumnos
-        </a>
-        <a href="{{ route('admin.niveles.index') }}" class="inline-block bg-violet-600 text-white px-4 py-3 rounded-xl">Gestionar niveles</a>
-        <a href="{{ route('admin.cursos.index') }}" class="inline-block bg-orange-500 text-white px-4 py-3 rounded-xl">Gestionar cursos</a>
-        <a href="{{ route('admin.materias.index') }}" class="inline-block bg-pink-600 text-white px-4 py-3 rounded-xl">Gestionar materias</a>
-        <a href="{{ route('admin.asignaciones.index') }}" class="inline-block bg-indigo-600 text-white px-4 py-3 rounded-xl">Asignaciones académicas</a>
-        <a href="{{ route('admin.ciclos.index') }}" class="inline-block bg-teal-600 text-white px-4 py-3 rounded-xl">Ciclos lectivos</a>
-        <a href="{{ route('admin.horarios.index') }}" class="inline-block bg-cyan-600 text-white px-4 py-3 rounded-xl">Horarios</a>
-        <a href="{{ route('admin.inscripciones.index') }}" class="inline-block bg-gradient-to-r from-teal-500 to-emerald-500 text-white px-4 py-3 rounded-xl">Inscripciones académicas</a>
-        <a href="{{ route('admin.deportes.index') }}" class="inline-block bg-gradient-to-r from-orange-400 to-amber-500 text-white px-4 py-3 rounded-xl">Deportes</a>
-        <a href="{{ route('admin.profesores.index') }}" class="inline-block bg-green-600 text-white px-4 py-3 rounded-xl">Gestionar profesores</a>
-    </div></section>
+<section class="rounded-3xl bg-white p-6 shadow-sm"><h2 class="text-xl font-bold text-institucional-oscuro">Accesos rápidos</h2><p class="mt-1 text-sm text-slate-500">Elegí una tarea para continuar.</p>
+    @php $accesos = [
+        ['👥','Gestionar alumnos','Altas, bajas y consultas', route('admin.alumnos.index'),'from-blue-600 to-cyan-500'],
+        ['▤','Gestionar niveles','Organización educativa', route('admin.niveles.index'),'from-violet-600 to-indigo-500'],
+        ['📚','Gestionar cursos','Cursos y divisiones', route('admin.cursos.index'),'from-orange-400 to-amber-500'],
+        ['✦','Gestionar materias','Oferta académica', route('admin.materias.index'),'from-pink-500 to-rose-500'],
+        ['▣','Asignaciones académicas','Materias y docentes', route('admin.asignaciones.index'),'from-indigo-600 to-blue-500'],
+        ['📅','Ciclos lectivos','Períodos escolares', route('admin.ciclos.index'),'from-teal-600 to-emerald-500'],
+        ['◫','Horarios','Planificación semanal', route('admin.horarios.index'),'from-cyan-600 to-sky-500'],
+        ['✓','Inscripciones académicas','Asignación de cursos', route('admin.inscripciones.index'),'from-emerald-500 to-teal-500'],
+        ['🏆','Deportes','Disciplinas y actividades', route('admin.deportes.index'),'from-amber-500 to-orange-500'],
+        ['♙','Gestionar profesores','Equipo docente', route('admin.profesores.index'),'from-green-600 to-emerald-500'],
+    ]; @endphp
+    <div class="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+        @foreach($accesos as [$icono,$titulo,$descripcion,$ruta,$gradiente])
+            <a href="{{ $ruta }}" class="group rounded-2xl bg-gradient-to-br {{ $gradiente }} p-5 text-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg"><div class="flex items-start justify-between"><span class="text-3xl">{{ $icono }}</span><span class="rounded-full bg-white/20 px-2 py-1 text-sm transition group-hover:translate-x-1">→</span></div><p class="mt-8 font-bold">{{ $titulo }}</p><p class="mt-1 text-sm text-white/80">{{ $descripcion }}</p></a>
+        @endforeach
+    </div>
+</section>
 @endsection
