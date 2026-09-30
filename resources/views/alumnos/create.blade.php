@@ -5,17 +5,17 @@
 @section('contenido')
 <div class="max-w-2xl mx-auto">
     <a href="{{ route('admin.alumnos.index') }}"
-       class="text-blue-700 hover:underline">
-        Volver al listado
+       class="inline-flex rounded-xl border border-cyan-100 bg-white px-3 py-2 font-semibold text-institucional-azul shadow-sm hover:bg-cyan-50">
+        ← Volver al listado
     </a>
 
-    <h1 class="text-3xl font-bold text-gray-800 my-6">
+    <h1 class="text-3xl font-extrabold text-institucional-oscuro my-6">
         Registrar alumno
     </h1>
 
     <form action="{{ route('admin.alumnos.store') }}"
           method="POST"
-          class="bg-white shadow rounded-lg p-6 space-y-4">
+          class="bg-white shadow-sm rounded-3xl p-6 sm:p-8 space-y-4">
         @csrf
 
         @php
@@ -46,7 +46,7 @@
                     @if ($limite) maxlength="{{ $limite }}" @endif
                     @if ($obligatorio) required @endif
                     @if ($tipo === 'date') max="{{ now()->toDateString() }}" @endif
-                    class="w-full border border-gray-300 rounded px-3 py-2"
+                    class="w-full rounded-xl border border-slate-300 px-4 py-3"
                 >
 
                 @error($campo)
@@ -58,7 +58,7 @@
         @endforeach
 
         <button type="submit"
-                class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded">
+                class="rounded-xl bg-gradient-to-r from-institucional-azul to-institucional-turquesa px-5 py-3 font-semibold text-white shadow-lg">
             Guardar alumno
         </button>
     </form>
