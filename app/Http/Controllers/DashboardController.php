@@ -6,6 +6,7 @@ use App\Models\Alumno;
 use App\Models\Curso;
 use App\Models\Deporte;
 use App\Models\InscripcionAcademica;
+use App\Models\HorarioClase;
 
 class DashboardController extends Controller
 {
@@ -55,6 +56,21 @@ class DashboardController extends Controller
 
     public function padre()
     {
-        return view('dashboard.padre');
+        $hijos = auth()->user()->hijos()->with([
+            'inscripciones' => fn ($query) => $query->where('activo', true)->with('curso'),
+            'inscripcionesDeportivas' => fn ($query) => $query->where('activo', true)->with('deporte'),
+            'inscripcionesComedor' => fn ($query) => $query->where('activo', true)->with('turno'),
+            'inscripcionesTransporte' => fn ($query) => $query->where('activo', true)->with('recorrido'),
+        ])->get();
+
+        $cursoIds = $hijos->flatMap(fn ($hijo) => $hijo->inscripciones->pluck('curso_id'))->unique();
+        $horariosPorCurso = HorarioClase::whereHas('asignacion', fn ($query) => $query->whereIn('curso_id', $cursoIds))
+            ->with('asignacion.materia')
+            ->orderBy('dia_semana')
+            ->orderBy('hora_inicio')
+            ->get()
+            ->groupBy(fn ($horario) => $horario->asignacion->curso_id);
+
+        return view('dashboard.padre', compact('hijos', 'horariosPorCurso'));
     }
 }

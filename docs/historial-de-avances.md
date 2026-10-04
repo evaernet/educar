@@ -28,7 +28,10 @@
 - Se aplicaron las migraciones de transporte y se agregó el acceso desde el panel de administración.
 - Se agregaron pruebas de cantidad máxima de recorridos, inscripción única y cupo; la suite completa alcanzó 16 pruebas y 82 aserciones aprobadas.
 - Se realizó la prueba manual de transporte en el entorno local con resultado aprobado.
+- Se implementó el vínculo entre padres e hijos y el panel familiar con consulta de curso, deportes, comedor, transporte y horarios.
+- Se incorporaron pruebas que impiden que un padre vea alumnos de otra familia; la suite alcanzó 18 pruebas y 88 aserciones aprobadas.
+- Se realizó la prueba manual del panel de padre con resultado aprobado.
 
 ## Próximo avance
 
-Implementar la gestión de padres e hijos.
+Implementar reportes académicos, deportivos y de servicios.

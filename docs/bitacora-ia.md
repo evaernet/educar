@@ -12,6 +12,7 @@ Esta bitácora registra el uso de IA durante el desarrollo. Cada propuesta debe 
 | 6 | Implementar deportes. | Gestionar disciplinas, horarios e inscripciones con límite y control de solapamientos. | Codex | Módulo web y pruebas propuestos. | Sí | Migraciones aplicadas y 10 tests con 52 aserciones aprobados. | RF14-RF15 cubiertos. |
 | 7 | Implementar comedor. | Gestionar turnos, cupos e inscripciones de alumnos. | Codex | Módulo web, migraciones, acceso en panel y pruebas propuestos. | Sí | Migraciones aplicadas, pruebas automatizadas y prueba manual de alta, inscripción y baja aprobadas. | RF17 cubierto en su alcance inicial. |
 | 8 | Implementar transporte. | Gestionar hasta cuatro recorridos, cupos e inscripciones de alumnos. | Codex | Módulo web, migraciones, acceso en panel y pruebas propuestos. | Sí | Migraciones aplicadas, 16 pruebas automatizadas con 82 verificaciones y prueba manual aprobada. | RF18 cubierto en su alcance inicial. |
+| 9 | Implementar padres e hijos. | Vincular responsables con alumnos y restringir su consulta a los hijos asociados. | Codex | Módulo web, migración, panel familiar y pruebas propuestos. | Sí | Migración aplicada, 18 pruebas automatizadas con 88 verificaciones y prueba manual aprobada. | RF19-RF20 cubiertos parcialmente. |
 
 ## Registro futuro
 
