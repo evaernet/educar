@@ -23,6 +23,7 @@
 - Se aplicaron las migraciones de deportes y se agregaron pruebas; la suite completa alcanzó 10 tests y 52 aserciones aprobadas.
 - Se implementó el módulo de comedor con turnos, cupos e inscripción única por alumno.
 - Se aplicaron las migraciones de comedor y se incorporó su acceso al panel de administración.
+- Se realizó la prueba manual de comedor en el entorno local: alta de turno, inscripción y baja lógica aprobadas.
 
 ## Próximo avance
 

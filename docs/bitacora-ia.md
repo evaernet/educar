@@ -10,7 +10,7 @@ Esta bitácora registra el uso de IA durante el desarrollo. Cada propuesta debe 
 | 4 | Revisar controles de acceso. | Proteger cierre de sesión, limitar intentos y reforzar contraseñas nuevas. | Codex | Rutas, validaciones y pruebas de seguridad propuestas. | Sí | Se ejecutaron 6 tests y 31 aserciones aprobadas. | Controles básicos de acceso cubiertos. |
 | 5 | Implementar inscripción académica. | Vincular alumno, curso y ciclo sin permitir duplicados. | Codex | Modelo, migración, panel de administración y pruebas propuestos. | Sí | Migración aplicada y 8 tests con 42 aserciones aprobados. | RF13 cubierto. |
 | 6 | Implementar deportes. | Gestionar disciplinas, horarios e inscripciones con límite y control de solapamientos. | Codex | Módulo web y pruebas propuestos. | Sí | Migraciones aplicadas y 10 tests con 52 aserciones aprobados. | RF14-RF15 cubiertos. |
-| 7 | Implementar comedor. | Gestionar turnos, cupos e inscripciones de alumnos. | Codex | Módulo web, migraciones, acceso en panel y pruebas propuestos. | Sí | Migraciones aplicadas y pruebas automatizadas ejecutadas. | RF17 cubierto en su alcance inicial. |
+| 7 | Implementar comedor. | Gestionar turnos, cupos e inscripciones de alumnos. | Codex | Módulo web, migraciones, acceso en panel y pruebas propuestos. | Sí | Migraciones aplicadas, pruebas automatizadas y prueba manual de alta, inscripción y baja aprobadas. | RF17 cubierto en su alcance inicial. |
 
 ## Registro futuro
 
