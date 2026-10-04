@@ -21,7 +21,10 @@
 - Se implementó la gestión de deportes, horarios deportivos e inscripciones de alumnos.
 - Se limita a dos deportes activos por alumno y se bloquean horarios deportivos superpuestos.
 - Se aplicaron las migraciones de deportes y se agregaron pruebas; la suite completa alcanzó 10 tests y 52 aserciones aprobadas.
+- Se implementó el módulo de comedor con turnos, cupos e inscripción única por alumno.
+- Se aplicaron las migraciones de comedor y se incorporó su acceso al panel de administración.
+- Se realizó la prueba manual de comedor en el entorno local: alta de turno, inscripción y baja lógica aprobadas.
 
 ## Próximo avance
 
-Implementar los servicios de comedor y transporte.
+Implementar el servicio de transporte.
