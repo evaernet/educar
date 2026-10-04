@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class User extends Authenticatable
 {
@@ -73,5 +74,10 @@ class User extends Authenticatable
     public function profesor(): HasOne
     {
         return $this->hasOne(Profesor::class);
+    }
+
+    public function hijos(): BelongsToMany
+    {
+        return $this->belongsToMany(Alumno::class, 'alumno_padre', 'padre_id', 'alumno_id')->withTimestamps();
     }
 }
