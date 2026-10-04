@@ -42,4 +42,9 @@ class Alumno extends Model
     {
         return $this->hasMany(InscripcionDeportiva::class);
     }
+
+    public function inscripcionesComedor()
+    {
+        return $this->hasMany(InscripcionComedor::class);
+    }
 }

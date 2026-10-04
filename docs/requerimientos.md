@@ -14,7 +14,8 @@ El sistema administra información académica, administrativa y extracurricular 
 | RF09-RF12 | Gestionar niveles, cursos, materias, ciclos, asignaciones y horarios. | Implementado parcialmente |
 | RF13 | Inscribir alumno a un único curso por ciclo. | Implementado |
 | RF14-RF15 | Gestionar hasta dos deportes y evitar conflictos de horarios. | Implementado |
-| RF17-RF18 | Gestionar comedor y transporte. | Pendiente |
+| RF17 | Gestionar comedor: turnos, cupos e inscripciones. | Implementado parcialmente |
+| RF18 | Gestionar transporte. | Pendiente |
 | RF19-RF20 | Permitir al padre consultar y gestionar datos de sus hijos. | Pendiente |
 | RF21-RF23 | Generar reportes académicos, deportivos y de servicios. | Pendiente |
 | RF24 | Exponer API REST para aplicación móvil. | Pendiente |
@@ -41,7 +42,8 @@ El sistema administra información académica, administrativa y extracurricular 
 - Un padre solo puede consultar y gestionar a sus hijos vinculados.
 - El transporte tiene cuatro recorridos y cada alumno solo puede inscribirse a uno.
 - Las inscripciones no pueden duplicarse.
+- Un alumno solo puede tener una inscripción de comedor y el turno no puede superar su cupo.
 
 ## Próximo requisito a implementar
 
-**Comedor y transporte:** administrar inscripciones y restricciones de ambos servicios.
+**Transporte:** administrar recorridos, cupos e inscripciones, respetando un recorrido por alumno.

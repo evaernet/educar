@@ -16,6 +16,7 @@ use App\Http\Controllers\InscripcionAcademicaController;
 use App\Http\Controllers\DeporteController;
 use App\Http\Controllers\HorarioDeporteController;
 use App\Http\Controllers\InscripcionDeportivaController;
+use App\Http\Controllers\ComedorController;
 
 // ============================================================
 // RUTAS PÚBLICAS — cualquiera puede entrar, sin estar logueado
@@ -127,3 +128,7 @@ Route::delete('admin/deportes/{deporte}/horarios/{horarioDeporte}', [HorarioDepo
 Route::get('admin/deportes-inscripciones', [InscripcionDeportivaController::class, 'index'])->name('admin.deportes.inscripciones.index')->middleware(['auth', 'role:admin']);
 Route::post('admin/deportes-inscripciones', [InscripcionDeportivaController::class, 'store'])->name('admin.deportes.inscripciones.store')->middleware(['auth', 'role:admin']);
 Route::delete('admin/deportes-inscripciones/{inscripcionDeportiva}', [InscripcionDeportivaController::class, 'destroy'])->name('admin.deportes.inscripciones.destroy')->middleware(['auth', 'role:admin']);
+Route::get('admin/comedor', [ComedorController::class, 'index'])->name('admin.comedor.index')->middleware(['auth','role:admin']);
+Route::post('admin/comedor/turnos', [ComedorController::class, 'storeTurno'])->name('admin.comedor.turnos.store')->middleware(['auth','role:admin']);
+Route::post('admin/comedor/inscripciones', [ComedorController::class, 'storeInscripcion'])->name('admin.comedor.inscripciones.store')->middleware(['auth','role:admin']);
+Route::delete('admin/comedor/inscripciones/{inscripcionComedor}', [ComedorController::class, 'destroyInscripcion'])->name('admin.comedor.inscripciones.destroy')->middleware(['auth','role:admin']);
