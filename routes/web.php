@@ -5,7 +5,17 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AlumnoController;
+use App\Http\Controllers\NivelController;
+use App\Http\Controllers\CursoController;
+use App\Http\Controllers\MateriaController;
+use App\Http\Controllers\AsignacionAcademicaController;
+use App\Http\Controllers\CicloLectivoController;
+use App\Http\Controllers\HorarioClaseController;
 use App\Http\Controllers\ProfesorController;
+use App\Http\Controllers\InscripcionAcademicaController;
+use App\Http\Controllers\DeporteController;
+use App\Http\Controllers\HorarioDeporteController;
+use App\Http\Controllers\InscripcionDeportivaController;
 
 // ============================================================
 // RUTAS PÚBLICAS — cualquiera puede entrar, sin estar logueado
@@ -21,16 +31,22 @@ Route::get('/login', [LoginController::class, 'mostrarFormulario'])->name('login
 
 // POST /login → procesa el formulario cuando apretás "Entrar"
 // GET y POST son métodos HTTP. GET = pedir una página. POST = enviar datos.
-Route::post('/login', [LoginController::class, 'procesar'])->name('login.procesar');
+Route::post('/login', [LoginController::class, 'procesar'])
+    ->middleware('throttle:login')
+    ->name('login.procesar');
 
-// GET /logout → cierra la sesión
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+// POST /logout → cierra la sesión con protección CSRF
+Route::post('/logout', [LoginController::class, 'logout'])
+    ->middleware('auth')
+    ->name('logout');
 
 // GET /register → muestra el formulario de registro
 Route::get('/register', [RegisterController::class, 'mostrarFormulario'])->name('register');
 
 // POST /register → procesa el registro
-Route::post('/register', [RegisterController::class, 'procesar'])->name('register.procesar');
+Route::post('/register', [RegisterController::class, 'procesar'])
+    ->middleware('throttle:register')
+    ->name('register.procesar');
 
 
 // ============================================================
@@ -84,44 +100,30 @@ Route::delete('/admin/alumnos/{alumno}', [AlumnoController::class, 'destroy'])
     ->middleware(['auth', 'role:admin'])
     ->name('admin.alumnos.destroy');
 
-// ============================================================
-// RUTAS DE PROFESORES
-//
-// ¿Qué hacen?: Cada línea conecta una URL + método HTTP (GET/POST/PUT/DELETE)
-// con un método específico de ProfesorController. Es el mapa que le dice a
-// Laravel "cuando entren a tal dirección, ejecutá tal función".
-// Conexión: Mismo patrón que las rutas de alumnos de arriba, cambiando
-// AlumnoController por ProfesorController.
-// ============================================================
-
-// GET /admin/profesores -> llama a index(): muestra la lista con buscador
-Route::get('/admin/profesores', [ProfesorController::class, 'index'])
-    ->middleware(['auth', 'role:admin']) // solo entra si está logueado Y es admin
-    ->name('admin.profesores.index');    // nombre que usamos en los redirect() del controlador
-
-// GET /admin/profesores/create -> llama a create(): muestra el formulario vacío
-Route::get('/admin/profesores/create', [ProfesorController::class, 'create'])
-    ->middleware(['auth', 'role:admin'])
-    ->name('admin.profesores.create');
-
-// POST /admin/profesores -> llama a store(): guarda lo que mandó el formulario
-Route::post('/admin/profesores', [ProfesorController::class, 'store'])
-    ->middleware(['auth', 'role:admin'])
-    ->name('admin.profesores.store');
-
-// GET /admin/profesores/{profesor}/edit -> llama a edit(): formulario precargado
-// {profesor} es el id del profesor; Laravel lo convierte automáticamente en
-// el objeto Profesor completo (route model binding), como vimos en el controlador.
-Route::get('/admin/profesores/{profesor}/edit', [ProfesorController::class, 'edit'])
-    ->middleware(['auth', 'role:admin'])
-    ->name('admin.profesores.edit');
-
-// PUT /admin/profesores/{profesor} -> llama a update(): guarda los cambios
-Route::put('/admin/profesores/{profesor}', [ProfesorController::class, 'update'])
-    ->middleware(['auth', 'role:admin'])
-    ->name('admin.profesores.update');
-
-// DELETE /admin/profesores/{profesor} -> llama a destroy(): baja lógica (activo = false)
-Route::delete('/admin/profesores/{profesor}', [ProfesorController::class, 'destroy'])
-    ->middleware(['auth', 'role:admin'])
-    ->name('admin.profesores.destroy');
+Route::resource('admin/niveles', NivelController::class)->parameters(['niveles'=>'nivel'])->names('admin.niveles')->middleware(['auth','role:admin']);
+Route::resource('admin/cursos', CursoController::class)->parameters(['cursos'=>'curso'])->names('admin.cursos')->middleware(['auth','role:admin']);
+Route::resource('admin/materias', MateriaController::class)->parameters(['materias'=>'materia'])->names('admin.materias')->middleware(['auth','role:admin']);
+Route::get('/admin/asignaciones', [AsignacionAcademicaController::class, 'index'])->middleware(['auth','role:admin'])->name('admin.asignaciones.index');
+Route::get('/admin/asignaciones/create', [AsignacionAcademicaController::class, 'create'])->middleware(['auth','role:admin'])->name('admin.asignaciones.create');
+Route::post('/admin/asignaciones', [AsignacionAcademicaController::class, 'store'])->middleware(['auth','role:admin'])->name('admin.asignaciones.store');
+Route::get('/admin/asignaciones/{asignacion}/edit', [AsignacionAcademicaController::class, 'edit'])->middleware(['auth','role:admin'])->name('admin.asignaciones.edit');
+Route::put('/admin/asignaciones/{asignacion}', [AsignacionAcademicaController::class, 'update'])->middleware(['auth','role:admin'])->name('admin.asignaciones.update');
+Route::delete('/admin/asignaciones/{asignacion}', [AsignacionAcademicaController::class, 'destroy'])->middleware(['auth','role:admin'])->name('admin.asignaciones.destroy');
+Route::resource('admin/ciclos', CicloLectivoController::class)->parameters(['ciclos'=>'ciclo'])->names('admin.ciclos')->middleware(['auth','role:admin']);
+Route::resource('admin/horarios', HorarioClaseController::class)->parameters(['horarios'=>'horario'])->names('admin.horarios')->middleware(['auth','role:admin']);
+Route::resource('admin/profesores', ProfesorController::class)
+    ->parameters(['profesores' => 'profesor'])
+    ->names('admin.profesores')
+    ->middleware(['auth', 'role:admin']);
+Route::resource('admin/inscripciones', InscripcionAcademicaController::class)
+    ->except('show')
+    ->parameters(['inscripciones' => 'inscripcione'])
+    ->names('admin.inscripciones')
+    ->middleware(['auth', 'role:admin']);
+Route::resource('admin/deportes', DeporteController::class)->except('show')->names('admin.deportes')->middleware(['auth', 'role:admin']);
+Route::get('admin/deportes/{deporte}/horarios', [HorarioDeporteController::class, 'index'])->name('admin.deportes.horarios.index')->middleware(['auth', 'role:admin']);
+Route::post('admin/deportes/{deporte}/horarios', [HorarioDeporteController::class, 'store'])->name('admin.deportes.horarios.store')->middleware(['auth', 'role:admin']);
+Route::delete('admin/deportes/{deporte}/horarios/{horarioDeporte}', [HorarioDeporteController::class, 'destroy'])->name('admin.deportes.horarios.destroy')->middleware(['auth', 'role:admin']);
+Route::get('admin/deportes-inscripciones', [InscripcionDeportivaController::class, 'index'])->name('admin.deportes.inscripciones.index')->middleware(['auth', 'role:admin']);
+Route::post('admin/deportes-inscripciones', [InscripcionDeportivaController::class, 'store'])->name('admin.deportes.inscripciones.store')->middleware(['auth', 'role:admin']);
+Route::delete('admin/deportes-inscripciones/{inscripcionDeportiva}', [InscripcionDeportivaController::class, 'destroy'])->name('admin.deportes.inscripciones.destroy')->middleware(['auth', 'role:admin']);

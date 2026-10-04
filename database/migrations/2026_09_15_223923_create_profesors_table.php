@@ -11,19 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('profesors', function (Blueprint $table) {
+        Schema::create('profesores', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('user_id')->nullable()->unique()->constrained('users')->nullOnDelete();
             $table->string('legajo', 20)->unique();
             $table->string('dni', 20)->unique();
-            $table->string('nombre',20);
-            $table->string('apellido', 40);
-            $table->string('especialidad', 100);
+            $table->string('nombre', 100);
+            $table->string('apellido', 100);
+            $table->string('especialidad', 150);
+            $table->string('email')->nullable();
+            $table->string('telefono', 30)->nullable();
             $table->boolean('activo')->default(true);
-            $table->string('email', 100);
-            $table->string('telefono', 20);
-
-            $table->foreignId('user_id')->nullable()->unique()->constrained('users')->nullOnDelete();
+            $table->timestamps();
         });
     }
 
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('profesors');
+        Schema::dropIfExists('profesores');
     }
 };

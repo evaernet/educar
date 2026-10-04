@@ -7,12 +7,10 @@
 {{-- @section llena el hueco @yield('contenido') del layout --}}
 @section('contenido')
 
-<div class="flex justify-center items-center min-h-screen -mt-16">
-    <div class="bg-white shadow-md rounded-lg p-8 w-full max-w-md">
+<div class="mx-auto max-w-md">
+    <div class="rounded-[2rem] bg-white p-8 shadow-tarjeta sm:p-10">
 
-        <h1 class="text-2xl font-bold text-center text-blue-800 mb-6">
-            🏫 Iniciar Sesión
-        </h1>
+        <div class="mb-8 text-center"><div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-institucional-azul to-institucional-turquesa text-3xl shadow-lg">🎓</div><h1 class="text-2xl font-extrabold text-institucional-oscuro sm:text-3xl">Educar Para Transformar</h1><p class="mt-2 font-semibold text-institucional-verde">¡Bienvenido/a!</p></div>
 
         {{-- Mostrar mensajes de error generales (ej: "No tenés permiso") --}}
         @if (session('error'))
@@ -29,48 +27,50 @@
             {{-- Protege contra ataques CSRF (peticiones falsas desde otros sitios) --}}
             @csrf
 
-            {{-- Cambiar el campo email por legajo --}}
-{{-- Cambiar el campo email por legajo --}}
-<div class="mb-4">
-    <label class="block text-gray-700 font-medium mb-1">Usuario</label>
-    <input
-        type="text"
-        name="legajo"
-        value="{{ old('legajo') }}"
-        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
-        placeholder="Tu usuario"
-    >
-    @error('legajo')
-        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-    @enderror
-</div>
+            {{-- Campo Email --}}
+            <div class="mb-4">
+                <label class="block text-gray-700 font-medium mb-1">Email</label>
+                <input
+                    type="email"
+                    name="email"
+                    {{-- old('email') recarga el valor que escribiste si hubo error --}}
+                    value="{{ old('email') }}"
+                    class="w-full rounded-xl border border-slate-300 px-4 py-3"
+                    placeholder="Ingresá tu email"
+                >
+                {{-- Muestra el error de validación del campo "email" si existe --}}
+                @error('email')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
-<div class="mb-6">
-    <label class="block text-gray-700 font-medium mb-1">Contraseña (DNI)</label>
-    <input
-        type="password"
-        name="password"
-        class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
-        placeholder="Tu DNI"
-    >
-    @error('password')
-        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-    @enderror
-</div>
+            {{-- Campo Contraseña --}}
+            <div class="mb-6">
+                <label class="block text-gray-700 font-medium mb-1">Contraseña</label>
+                <input
+                    type="password"
+                    name="password"
+                    class="w-full rounded-xl border border-slate-300 px-4 py-3"
+                    placeholder="Ingresá tu contraseña"
+                >
+                @error('password')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
 
             {{-- Botón de envío --}}
             <button type="submit"
-                class="w-full bg-blue-700 hover:bg-blue-800 text-white font-bold py-2 rounded">
-                Entrar
+                class="w-full rounded-xl bg-gradient-to-r from-institucional-azul to-institucional-turquesa py-3 font-bold text-white shadow-lg transition hover:-translate-y-0.5">
+                Ingresar →
             </button>
 
         </form>
 
         {{-- Link al registro --}}
-        <p class="text-center text-gray-500 text-sm mt-4">
+        <p class="text-center text-slate-500 text-sm mt-6">
             ¿No tenés cuenta?
-            <a href="{{ route('register') }}" class="text-blue-600 hover:underline">
-                Registrate acá
+            <a href="{{ route('register') }}" class="font-semibold text-institucional-azul hover:underline">
+                Registrate
             </a>
         </p>
 
