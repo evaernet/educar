@@ -24,7 +24,11 @@
 - Se implementó el módulo de comedor con turnos, cupos e inscripción única por alumno.
 - Se aplicaron las migraciones de comedor y se incorporó su acceso al panel de administración.
 - Se realizó la prueba manual de comedor en el entorno local: alta de turno, inscripción y baja lógica aprobadas.
+- Se implementó el módulo de transporte con hasta cuatro recorridos, cupos e inscripción única por alumno.
+- Se aplicaron las migraciones de transporte y se agregó el acceso desde el panel de administración.
+- Se agregaron pruebas de cantidad máxima de recorridos, inscripción única y cupo; la suite completa alcanzó 16 pruebas y 82 aserciones aprobadas.
+- Se realizó la prueba manual de transporte en el entorno local con resultado aprobado.
 
 ## Próximo avance
 
-Implementar el servicio de transporte.
+Implementar la gestión de padres e hijos.
