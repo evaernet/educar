@@ -98,6 +98,8 @@ class AcademicConfigurationTest extends TestCase
             'dni' => '30000000',
             'nombre' => 'Ana',
             'apellido' => 'Pérez',
+            'email' => 'ana.perez@example.test',
+            'telefono' => '3794000000',
             'especialidad' => 'Matemática',
         ]);
 
