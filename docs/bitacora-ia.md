@@ -16,6 +16,7 @@ Esta bitácora registra el uso de IA durante el desarrollo. Cada propuesta debe 
 | 10 | Implementar reportes. | Mostrar reportes académicos, deportivos y de servicios para administración. | Codex | Panel de reportes y prueba de autorización propuestos. | Sí | 19 pruebas automatizadas con 94 verificaciones y prueba manual aprobada. | RF21-RF23 cubiertos parcialmente. |
 | 11 | Implementar API móvil. | Exponer autenticación por token y perfil según el rol. | Codex | API REST con Sanctum, documentación y pruebas propuestos. | Sí | 21 pruebas automatizadas con 100 verificaciones y prueba manual de login, perfil y logout aprobada. | RF24 cubierto parcialmente. |
 | 12 | Implementar administración de usuarios. | Centralizar cuentas, roles permitidos, estados y vínculo automático con alumnos y profesores. | Codex | Panel web, migraciones de vinculación, validaciones en español y pruebas propuestos. | Sí | Prueba manual aprobada; se ejecutaron 28 pruebas automatizadas con 123 verificaciones. | RF25 cubierto en su alcance inicial. |
+| 13 | Ampliar API móvil para padres. | Exponer hijos vinculados y detalle de servicios con control de acceso. | Codex | Endpoints protegidos, respuestas JSON y pruebas de aislamiento propuestos. | Sí | Prueba manual de login, hijo vinculado, detalle y logout aprobada; pruebas automatizadas actualizadas. | RF24 ampliado para la futura app móvil. |
 
 ## Registro futuro
 
