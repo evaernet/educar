@@ -19,6 +19,7 @@ use App\Http\Controllers\InscripcionDeportivaController;
 use App\Http\Controllers\ComedorController;
 use App\Http\Controllers\TransporteController;
 use App\Http\Controllers\PadreHijoController;
+use App\Http\Controllers\ReporteController;
 
 // ============================================================
 // RUTAS PÚBLICAS — cualquiera puede entrar, sin estar logueado
@@ -141,3 +142,4 @@ Route::delete('admin/transporte/inscripciones/{inscripcionTransporte}', [Transpo
 Route::get('admin/familias', [PadreHijoController::class, 'index'])->name('admin.familias.index')->middleware(['auth','role:admin']);
 Route::post('admin/familias', [PadreHijoController::class, 'store'])->name('admin.familias.store')->middleware(['auth','role:admin']);
 Route::delete('admin/familias/{padre}/{alumno}', [PadreHijoController::class, 'destroy'])->name('admin.familias.destroy')->middleware(['auth','role:admin']);
+Route::get('admin/reportes', [ReporteController::class, 'index'])->name('admin.reportes.index')->middleware(['auth','role:admin']);

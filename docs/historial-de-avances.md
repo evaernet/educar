@@ -31,7 +31,10 @@
 - Se implementó el vínculo entre padres e hijos y el panel familiar con consulta de curso, deportes, comedor, transporte y horarios.
 - Se incorporaron pruebas que impiden que un padre vea alumnos de otra familia; la suite alcanzó 18 pruebas y 88 aserciones aprobadas.
 - Se realizó la prueba manual del panel de padre con resultado aprobado.
+- Se implementó el panel de reportes con resúmenes académicos, deportivos, comedor y transporte.
+- Se validó el acceso exclusivo para administradores; la suite alcanzó 19 pruebas y 94 aserciones aprobadas.
+- Se realizó la prueba manual de reportes con resultado aprobado.
 
 ## Próximo avance
 
-Implementar reportes académicos, deportivos y de servicios.
+Implementar la API REST para la aplicación móvil.

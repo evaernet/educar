@@ -21,6 +21,7 @@
         ['🏆','Deportes','Disciplinas y actividades', route('admin.deportes.index'),'from-amber-500 to-orange-500'],
         ['🍽','Comedor','Turnos, cupos e inscripciones', route('admin.comedor.index'),'from-rose-500 to-orange-400'],
         ['🚌','Transporte','Recorridos e inscripciones', route('admin.transporte.index'),'from-sky-600 to-blue-500'],
+        ['📊','Reportes','Resumen académico y servicios', route('admin.reportes.index'),'from-fuchsia-600 to-violet-500'],
         ['♙','Gestionar profesores','Equipo docente', route('admin.profesores.index'),'from-green-600 to-emerald-500'],
     ]; @endphp
     <div class="mt-5 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
