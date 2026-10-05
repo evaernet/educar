@@ -33,7 +33,7 @@ class LoginController extends Controller
             'password' => $request->password,
         ];
 
-        if (Auth::attempt($credenciales)) {
+        if (Auth::attempt($credenciales) && auth()->user()->activo) {
             // Login exitoso
             // Regeneramos la sesión por seguridad (evita ataques de fijación de sesión)
             $request->session()->regenerate();
@@ -53,6 +53,8 @@ class LoginController extends Controller
                 return redirect()->route('padre.dashboard');
             }
         }
+
+        Auth::logout();
 
         // PASO 4: Si llegamos acá, el login falló
         // Volvemos al formulario con un mensaje de error

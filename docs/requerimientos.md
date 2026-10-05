@@ -19,7 +19,7 @@ El sistema administra información académica, administrativa y extracurricular 
 | RF19-RF20 | Vincular padres con hijos y permitirles consultar sus datos y servicios. | Implementado parcialmente |
 | RF21-RF23 | Generar reportes académicos, deportivos y de servicios. | Implementado parcialmente |
 | RF24 | Exponer API REST para aplicación móvil. | Implementado parcialmente |
-| RF25 | Administrar usuarios del sistema. | Pendiente |
+| RF25 | Administrar usuarios del sistema. | Implementado parcialmente |
 
 ## Requerimientos no funcionales
 
@@ -45,7 +45,11 @@ El sistema administra información académica, administrativa y extracurricular 
 - Un alumno solo puede tener una inscripción de comedor y el turno no puede superar su cupo.
 - El transporte admite hasta cuatro recorridos; un alumno solo puede tener una inscripción y el recorrido no puede superar su cupo.
 - Un padre solo puede consultar la información de los alumnos que tenga vinculados.
+- Las cuentas de alumno se crean exclusivamente al registrar su ficha académica; las cuentas de profesor se crean al registrar su ficha laboral.
+- El panel de usuarios administra altas de administradores y padres/tutores, además de activar o desactivar cuentas existentes.
+- Una cuenta inactiva no puede iniciar sesión y un administrador no puede desactivar su propia cuenta.
+- El DNI de alumnos y profesores debe tener siete u ocho dígitos, sin puntos ni guiones.
 
 ## Próximo requisito a implementar
 
-**Administración de usuarios:** gestionar altas, roles y bajas de cuentas del sistema.
+**Aplicación móvil:** ampliar los endpoints de la API REST para que la futura aplicación móvil pueda consultar los servicios asociados a cada alumno.

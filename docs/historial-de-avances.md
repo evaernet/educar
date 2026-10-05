@@ -37,7 +37,12 @@
 - Se incorporó la API REST versión 1 con autenticación Sanctum, perfil y cierre de sesión por token.
 - Se verificó la restricción de hijos para el rol padre y se documentaron los endpoints para móvil.
 - Se realizó la prueba manual de inicio de sesión, perfil y cierre de sesión; la suite alcanzó 21 pruebas y 100 aserciones aprobadas.
+- Se implementó la administración de usuarios: altas de administradores y padres/tutores, listado de cuentas y activación o desactivación segura.
+- Las cuentas históricas de alumnos y profesores fueron vinculadas a sus fichas mediante migraciones; las nuevas altas desde los módulos académicos generan su cuenta automáticamente.
+- Se restringió el alta de alumnos y profesores a sus módulos específicos para evitar cuentas sin ficha académica o laboral.
+- Se unificó la validación de DNI: solo siete u ocho dígitos sin puntos ni guiones, con mensajes de validación en español para todo el sistema.
+- Se realizó la prueba manual del módulo de usuarios y la suite alcanzó 28 pruebas automatizadas con 123 aserciones aprobadas.
 
 ## Próximo avance
 
-Implementar la administración de usuarios del sistema.
+Ampliar la API REST para la futura aplicación móvil, incorporando consultas de servicios asociados a los alumnos.
