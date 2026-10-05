@@ -34,7 +34,10 @@
 - Se implementó el panel de reportes con resúmenes académicos, deportivos, comedor y transporte.
 - Se validó el acceso exclusivo para administradores; la suite alcanzó 19 pruebas y 94 aserciones aprobadas.
 - Se realizó la prueba manual de reportes con resultado aprobado.
+- Se incorporó la API REST versión 1 con autenticación Sanctum, perfil y cierre de sesión por token.
+- Se verificó la restricción de hijos para el rol padre y se documentaron los endpoints para móvil.
+- Se realizó la prueba manual de inicio de sesión, perfil y cierre de sesión; la suite alcanzó 21 pruebas y 100 aserciones aprobadas.
 
 ## Próximo avance
 
-Implementar la API REST para la aplicación móvil.
+Implementar la administración de usuarios del sistema.

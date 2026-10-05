@@ -8,6 +8,7 @@ Esta carpeta concentra la documentación de trabajo del sistema **Educar Para Tr
 - [Trazabilidad](trazabilidad.md): relación entre requisito, módulo y prueba.
 - [Bitácora de IA](bitacora-ia.md): registro verificable del uso de IA.
 - [Historial de avances](historial-de-avances.md): decisiones y cambios reales del proyecto.
+- [API móvil](api-movil.md): endpoints, autenticación y reglas de seguridad de la versión 1.
 - [Identidad visual](diseno/identidad-visual.md): guía y referencias del estilo web aprobado.
 - [Estándares de desarrollo](estandares-desarrollo.md): buenas prácticas técnicas, visuales y de calidad acordadas.
 
