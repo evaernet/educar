@@ -17,7 +17,7 @@ El sistema administra información académica, administrativa y extracurricular 
 | RF17 | Gestionar comedor: turnos, cupos e inscripciones. | Implementado parcialmente |
 | RF18 | Gestionar transporte: recorridos, cupos e inscripciones. | Implementado parcialmente |
 | RF19-RF20 | Vincular padres con hijos y permitirles consultar sus datos y servicios. | Implementado parcialmente |
-| RF21-RF23 | Generar reportes académicos, deportivos y de servicios. | Pendiente |
+| RF21-RF23 | Generar reportes académicos, deportivos y de servicios. | Implementado parcialmente |
 | RF24 | Exponer API REST para aplicación móvil. | Pendiente |
 | RF25 | Administrar usuarios del sistema. | Pendiente |
 
@@ -48,4 +48,4 @@ El sistema administra información académica, administrativa y extracurricular 
 
 ## Próximo requisito a implementar
 
-**Reportes:** generar reportes académicos, deportivos y de servicios.
+**API REST:** exponer información del sistema para la futura aplicación móvil.

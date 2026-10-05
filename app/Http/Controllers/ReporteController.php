@@ -1,0 +1,4 @@
+<?php
+namespace App\Http\Controllers;
+use App\Models\Curso; use App\Models\Deporte; use App\Models\InscripcionComedor; use App\Models\InscripcionTransporte; use App\Models\RecorridoTransporte; use App\Models\TurnoComedor;
+class ReporteController extends Controller { public function index(){ return view('reportes.index',['cursos'=>Curso::where('activo',true)->withCount(['inscripciones as alumnos'=>fn($q)=>$q->where('activo',true)])->get(),'deportes'=>Deporte::where('activo',true)->withCount(['inscripciones as alumnos'=>fn($q)=>$q->where('activo',true)])->get(),'turnos'=>TurnoComedor::where('activo',true)->withCount(['inscripciones as alumnos'=>fn($q)=>$q->where('activo',true)])->get(),'recorridos'=>RecorridoTransporte::where('activo',true)->withCount(['inscripciones as alumnos'=>fn($q)=>$q->where('activo',true)])->get(),'totalComedor'=>InscripcionComedor::where('activo',true)->count(),'totalTransporte'=>InscripcionTransporte::where('activo',true)->count()]); } }
