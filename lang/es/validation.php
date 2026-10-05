@@ -1,0 +1,46 @@
+<?php
+
+return [
+    'accepted' => 'El campo :attribute debe ser aceptado.',
+    'array' => 'El campo :attribute debe ser una lista.',
+    'before' => 'El campo :attribute debe ser una fecha anterior a :date.',
+    'before_or_equal' => 'El campo :attribute debe ser una fecha anterior o igual a :date.',
+    'confirmed' => 'La confirmación de :attribute no coincide.',
+    'date' => 'El campo :attribute debe ser una fecha válida.',
+    'email' => 'El campo :attribute debe ser un correo electrónico válido.',
+    'exists' => 'El :attribute seleccionado no es válido.',
+    'in' => 'La opción elegida para :attribute no es válida.',
+    'integer' => 'El campo :attribute debe ser un número entero.',
+    'max' => [
+        'numeric' => 'El campo :attribute no puede ser mayor que :max.',
+        'string' => 'El campo :attribute no puede tener más de :max caracteres.',
+    ],
+    'min' => [
+        'numeric' => 'El campo :attribute debe ser al menos :min.',
+        'string' => 'El campo :attribute debe tener al menos :min caracteres.',
+    ],
+    'not_in' => 'La opción elegida para :attribute no es válida.',
+    'numeric' => 'El campo :attribute debe contener solo números.',
+    'regex' => 'El formato de :attribute no es válido.',
+    'required' => 'El campo :attribute es obligatorio.',
+    'string' => 'El campo :attribute debe ser texto.',
+    'unique' => 'El valor de :attribute ya está registrado.',
+
+    'attributes' => [
+        'activo' => 'estado',
+        'apellido' => 'apellido',
+        'cupo' => 'cupo',
+        'dni' => 'DNI',
+        'domicilio' => 'domicilio',
+        'email' => 'correo electrónico',
+        'especialidad' => 'especialidad',
+        'fecha_nacimiento' => 'fecha de nacimiento',
+        'legajo' => 'legajo',
+        'name' => 'nombre',
+        'nombre' => 'nombre',
+        'password' => 'contraseña',
+        'password_confirmation' => 'confirmación de contraseña',
+        'role' => 'rol',
+        'telefono' => 'teléfono',
+    ],
+];

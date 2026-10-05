@@ -20,6 +20,7 @@ use App\Http\Controllers\ComedorController;
 use App\Http\Controllers\TransporteController;
 use App\Http\Controllers\PadreHijoController;
 use App\Http\Controllers\ReporteController;
+use App\Http\Controllers\UsuarioController;
 
 // ============================================================
 // RUTAS PÚBLICAS — cualquiera puede entrar, sin estar logueado
@@ -143,3 +144,6 @@ Route::get('admin/familias', [PadreHijoController::class, 'index'])->name('admin
 Route::post('admin/familias', [PadreHijoController::class, 'store'])->name('admin.familias.store')->middleware(['auth','role:admin']);
 Route::delete('admin/familias/{padre}/{alumno}', [PadreHijoController::class, 'destroy'])->name('admin.familias.destroy')->middleware(['auth','role:admin']);
 Route::get('admin/reportes', [ReporteController::class, 'index'])->name('admin.reportes.index')->middleware(['auth','role:admin']);
+Route::get('admin/usuarios', [UsuarioController::class, 'index'])->name('admin.usuarios.index')->middleware(['auth','role:admin']);
+Route::post('admin/usuarios', [UsuarioController::class, 'store'])->name('admin.usuarios.store')->middleware(['auth','role:admin']);
+Route::patch('admin/usuarios/{user}/estado', [UsuarioController::class, 'toggleEstado'])->name('admin.usuarios.estado')->middleware(['auth','role:admin']);
