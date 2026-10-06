@@ -27,16 +27,16 @@
             {{-- Protege contra ataques CSRF (peticiones falsas desde otros sitios) --}}
             @csrf
 
-            {{-- Campo Email --}}
+            {{-- Campo Email o legajo (el alumno entra con su legajo) --}}
             <div class="mb-4">
-                <label class="block text-gray-700 font-medium mb-1">Email</label>
+                <label class="block text-gray-700 font-medium mb-1">Email o legajo</label>
                 <input
-                    type="email"
+                    type="text"
                     name="email"
                     {{-- old('email') recarga el valor que escribiste si hubo error --}}
                     value="{{ old('email') }}"
                     class="w-full rounded-xl border border-slate-300 px-4 py-3"
-                    placeholder="Ingresá tu email"
+                    placeholder="Ingresá tu email o legajo"
                 >
                 {{-- Muestra el error de validación del campo "email" si existe --}}
                 @error('email')
