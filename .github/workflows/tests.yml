@@ -39,4 +39,13 @@ jobs:
           php artisan key:generate
 
       - name: Ejecutar pruebas automatizadas
-        run: php artisan test
+        run: php artisan test --log-junit storage/logs/junit.xml
+
+      - name: Conservar reporte de pruebas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: reporte-pruebas-phpunit
+          path: storage/logs/junit.xml
+          if-no-files-found: warn
+          retention-days: 14
