@@ -53,6 +53,11 @@ class Alumno extends Model
         return $this->hasMany(InscripcionTransporte::class);
     }
 
+    public function facturas()
+    {
+        return $this->hasMany(Factura::class);
+    }
+
     public function padres()
     {
         return $this->belongsToMany(User::class, 'alumno_padre', 'alumno_id', 'padre_id')->withTimestamps();
