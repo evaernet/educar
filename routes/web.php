@@ -21,6 +21,8 @@ use App\Http\Controllers\TransporteController;
 use App\Http\Controllers\PadreHijoController;
 use App\Http\Controllers\ReporteController;
 use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\CuotaController;
+use App\Http\Controllers\ReportePagoController;
 
 // ============================================================
 // RUTAS PÚBLICAS — cualquiera puede entrar, sin estar logueado
@@ -147,3 +149,9 @@ Route::get('admin/reportes', [ReporteController::class, 'index'])->name('admin.r
 Route::get('admin/usuarios', [UsuarioController::class, 'index'])->name('admin.usuarios.index')->middleware(['auth','role:admin']);
 Route::post('admin/usuarios', [UsuarioController::class, 'store'])->name('admin.usuarios.store')->middleware(['auth','role:admin']);
 Route::patch('admin/usuarios/{user}/estado', [UsuarioController::class, 'toggleEstado'])->name('admin.usuarios.estado')->middleware(['auth','role:admin']);
+
+// Parte 3: cuotas, facturación y reportes de pagos (solo admin)
+Route::get('admin/cuotas', [CuotaController::class, 'index'])->name('admin.cuotas.index')->middleware(['auth','role:admin']);
+Route::post('admin/cuotas/valores', [CuotaController::class, 'guardarValores'])->name('admin.cuotas.valores')->middleware(['auth','role:admin']);
+Route::post('admin/cuotas/generar', [CuotaController::class, 'generar'])->name('admin.cuotas.generar')->middleware(['auth','role:admin']);
+Route::get('admin/reportes/pagos', [ReportePagoController::class, 'index'])->name('admin.reportes.pagos')->middleware(['auth','role:admin']);

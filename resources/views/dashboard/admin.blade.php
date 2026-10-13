@@ -22,6 +22,9 @@
         ['🍽','Comedor','Turnos, cupos e inscripciones', route('admin.comedor.index'),'from-rose-500 to-orange-400'],
         ['🚌','Transporte','Recorridos e inscripciones', route('admin.transporte.index'),'from-sky-600 to-blue-500'],
         ['📊','Reportes','Resumen académico y servicios', route('admin.reportes.index'),'from-fuchsia-600 to-violet-500'],
+        ['💲','Cuotas y facturación','Valores, facturas y pagos', route('admin.cuotas.index'),'from-amber-500 to-yellow-400'],
+        ['💰','Reportes de pagos','Ingresos, deudas y pagos por servicio', route('admin.reportes.pagos'),'from-teal-600 to-cyan-500'],
+        ['👨‍👩‍👧','Familias','Vincular padres con alumnos', route('admin.familias.index'),'from-lime-600 to-green-500'],
         ['👤','Usuarios','Cuentas y permisos', route('admin.usuarios.index'),'from-slate-700 to-slate-500'],
         ['♙','Gestionar profesores','Equipo docente', route('admin.profesores.index'),'from-green-600 to-emerald-500'],
     ]; @endphp
