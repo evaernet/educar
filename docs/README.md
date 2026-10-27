@@ -11,5 +11,6 @@ Esta carpeta concentra la documentación de trabajo del sistema **Educar Para Tr
 - [API móvil](api-movil.md): endpoints, autenticación y reglas de seguridad de la versión 1.
 - [Identidad visual](diseno/identidad-visual.md): guía y referencias del estilo web aprobado.
 - [Estándares de desarrollo](estandares-desarrollo.md): buenas prácticas técnicas, visuales y de calidad acordadas.
+- [Verificación de calidad y seguridad](verificacion-calidad-seguridad.md): evidencia de pruebas, compilación y auditoría de dependencias.
 
 Los documentos Word de planificación se encuentran en la carpeta `../../output/` del espacio de trabajo.

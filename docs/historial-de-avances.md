@@ -46,6 +46,15 @@
 - Se bloqueó la emisión de tokens para cuentas inactivas y se agregaron respuestas JSON claras para accesos no autorizados.
 - Se realizó la prueba manual local de API con una cuenta de padre, consulta de hija vinculada y cierre de sesión aprobados.
 
+## 27 de octubre de 2026
+
+- Se eliminó una migración local duplicada de la tabla `sessions`, que impedía iniciar la base de datos de pruebas.
+- Se actualizaron dependencias con avisos de seguridad: `league/commonmark` a `2.10.4` y `symfony/http-foundation` a `7.4.21`.
+- Se ejecutó nuevamente la suite completa: 41 pruebas y 199 aserciones aprobadas.
+- Se compiló el frontend con Vite: 61 módulos transformados sin errores.
+- Se ejecutó `composer audit` sin avisos de vulnerabilidades conocidos.
+- Se incorporó la evidencia en `docs/verificacion-calidad-seguridad.md`.
+
 ## Próximo avance
 
 Crear la interfaz inicial de la aplicación móvil para padres, consumiendo los endpoints de autenticación, hijos y detalle de servicios.
