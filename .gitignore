@@ -39,3 +39,5 @@
 
 /.phpunit.cache/
 /.phpunit.result.cache
+/cypress/screenshots/
+/cypress/videos/

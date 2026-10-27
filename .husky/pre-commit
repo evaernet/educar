@@ -1,0 +1,11 @@
+# Pre-commit hook (Husky): se ejecuta antes de cada "git commit".
+# Qué hace: revisa con Laravel Pint el formato y la sintaxis de los archivos PHP modificados.
+# Si alguno no cumple, el commit se bloquea.
+
+echo "Revisando formato y sintaxis con Laravel Pint..."
+php vendor/bin/pint --dirty --test || {
+  echo ""
+  echo "Commit bloqueado: hay archivos PHP que no cumplen el formato."
+  echo "Corregilos con: php vendor/bin/pint --dirty   y volvé a hacer el commit."
+  exit 1
+}
